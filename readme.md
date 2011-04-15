@@ -6,6 +6,10 @@ control over the timing.
 Humane JS tries to be as unobtrusive as possible to the user experience while providing help information that is
 clear and grabs the users attention.
 
+## Demo
+
+You can see a demo [here](http://wavded.github.com/humane-js/)
+
 ## Testing
 I personally have tested IE 6+, Firefox and Chrome, but there is support for Opera and Safari that has been accounted
 for.  Please let me know if you have any issues.  I believe the following is safe to use:
