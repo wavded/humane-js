@@ -24,12 +24,17 @@ Humane adds a `humane` function to the global scope that you simple call.
 <pre>
 humane('hello world');
 </pre>
+
 ## Configuration
 Humane is very simple, only the timeout before the popup dissapears is configurable
 <pre>
 humane.timeout = 2000
 </pre>
 Default timeout is 3 seconds.
+
+## Contribute
+
+I know improvements could be made, please help!  This is just getting started.  My goal is to keep the system very simple and small.
 
 ## License
 
