@@ -21,9 +21,12 @@ Simply include the JS and CSS file on your page.
 
 ## Usage
 Humane adds a `humane` function to the global scope that you simple call.
-    humane('hello world');
-
+<pre>
+humane('hello world');
+</pre>
 ## Configuration
 Humane is very simple, only the timeout before the popup dissapears is configurable
-   humane.timeout = 2000
+<pre>
+humane.timeout = 2000
+</pre>
 Default timeout is 3 seconds.
