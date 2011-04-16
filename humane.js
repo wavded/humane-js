@@ -26,8 +26,6 @@
             return false;
         }(doc.body.style));
 
-        transitionSupported = false;
-
         humane.setup();
     });
 
