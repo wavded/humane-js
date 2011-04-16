@@ -40,7 +40,7 @@ html, body {
   -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=0)"
 }
 .humane.humane-show {
-  opacity: 0.8;
+  opacity: 1;
   visibility: visible;
 }
 div.humane.humane-show:hover {
