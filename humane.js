@@ -4,7 +4,7 @@
  * @example
  *  humane('hello world');
  */
-(function(win,doc){
+;(function(win,doc){
     var 
         eventOn = function(type,fn){ win.addEventListener ? win.addEventListener(type,fn,false) : win.attachEvent('on'+type,fn)},
         eventOff = function(type,fn){ win.removeEventListener ? win.removeEventListener(type,fn,false) : win.detachEvent('on'+type,fn)},
