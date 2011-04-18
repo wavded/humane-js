@@ -4,7 +4,7 @@ liked the project but I wanted to remove the jQuery dependency, add support for 
 control over the timing.
 
 ## About
-Humane JS tries to be as unobtrusive as possible to the user experience while providing help information that is
+Humane JS tries to be as unobtrusive as possible to the user experience while providing helpful information that is
 clear and grabs the users attention.  It is framework independent.  Customizable.
 
 ## Demo
@@ -31,7 +31,7 @@ humane('hello world');
 </pre>
 
 ## Configuration
-Humane is very simple, only the timeout before the popup dissapears is configurable
+Humane is very simple, only the timeout before the popup disappears is configurable
 <pre>
 humane.timeout = 2000
 </pre>
