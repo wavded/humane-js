@@ -29,6 +29,10 @@ Humane adds a `humane` function to the global scope that you simply call
 <pre>
 humane('hello world');
 </pre>
+You also can use HTML
+<pre>
+humane('&lt;span style="color:red">oh no!&lt;/span>');
+</pre>
 
 ## Configuration
 Humane is very simple, only the timeout before the popup disappears is configurable
