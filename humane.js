@@ -14,7 +14,7 @@
         humaneEl = null,
         timeout = null,
         useFilter = /msie [678]/i.test(navigator.userAgent), // ua sniff for filter support
-        isSetup = true,
+        isSetup = false,
         queue = [];
 
     eventOn('load',function(){
