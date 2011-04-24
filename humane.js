@@ -53,7 +53,7 @@
             if(useFilter)
                 humaneEl.style.filter = "progid:DXImageTransform.Microsoft.alpha(opacity="+opacity+")";
             else humaneEl.style.opacity = opacity / 100;
-        },10);
+        },25);
     }
 
     function animate(level){
