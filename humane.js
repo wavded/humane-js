@@ -19,9 +19,9 @@
 
     eventOn('load',function(){
         transitionSupported = (function(style){
-            var prefixes = ['Moz','Webkit','O','ms','Khtml',''];
+            var prefixes = ['MozT','WebkitT','OT','msT','KhtmlT','t'];
             for(var i = 0, prefix; prefix = prefixes[i]; i++){
-                if(prefix+'Transition' in style) return true;
+                if(prefix+'ransition' in style) return true;
             }
             return false;
         }(doc.body.style));
