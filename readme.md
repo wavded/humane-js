@@ -45,6 +45,13 @@ Default timeout is 2 seconds.
 
 I know improvements could be made, please help!  This is just getting started.  My goal is to keep the system very simple and small.
 
+## Contributers
+
+Many thanks to the JS wizards that helped make this better:
+
+- @bga_ (Alexander)
+- @joseanpg (Jose)
+
 ## License
 
 (The MIT License)
