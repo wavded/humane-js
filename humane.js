@@ -5,10 +5,7 @@
  *  humane('hello world');
  */
 ;(function(win,doc){
-    var
-        eventOn = function(type,fn){ win.addEventListener ? win.addEventListener(type,fn,false) : win.attachEvent('on'+type,fn)},
-        eventOff = function(type,fn){ win.removeEventListener ? win.removeEventListener(type,fn,false) : win.detachEvent('on'+type,fn)},
-
+    var eventOn, eventOff,
         animationInProgress = false,
         transitionSupported = false,
         humaneEl = null,
@@ -16,6 +13,14 @@
         useFilter = /msie [678]/i.test(navigator.userAgent), // ua sniff for filter support
         isSetup = false,
         queue = [];
+
+    if (win.addEventListener) {
+       eventOn = function(type,fn){win.addEventListener(type,fn,false)};
+       eventOff = function(type,fn){win.removeEventListener(type,fn,false)};
+    } else {
+       eventOn = function(type,fn){win.attachEvent('on'+type,fn)};
+       eventOff = function(type,fn){win.detachEvent('on'+type,fn)};
+    }
 
     eventOn('load',function(){
         transitionSupported = (function(style){
