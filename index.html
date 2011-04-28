@@ -2,12 +2,22 @@
 <html>
    <head>
       <title>Humane JS</title>
+      <style>
+         body {
+            font-family: Verdana, sans-serif;
+            padding: 80px;
+            background-color: #eee;
+         }
+      </style>
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
       <link rel='stylesheet' href='humane.css'/>
       <script src='humane.js'></script>
    </head>
    <body>
+      <a href="http://github.com/wavded/humane-js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+
       <h1>Humane JS</h1>
+      <p>Click a notification sample to view:</p>
 
       <a href='javascript:humane("Welcome Back")'>
          <pre>humane("Welcome Back")</pre>
@@ -18,5 +28,13 @@
       <a href='javascript:humane("<p style=\"color:red\">Invalid Username and/or Password</p>")'>
          <pre>humane("&lt;p style='color:red'>Invalid Username and/or Password&lt;/p>")</pre>
       </a>
+
+      <p>Set hide delay time by: <pre>humane.timeout = (milliseconds)</pre> Examples (select one and try samples again): </p>
+      <a href='#' onclick='humane.timeout = 500'>.5 Sec</a> |
+      <a href='#' onclick='humane.timeout = 10000'>10 Secs</a> |
+      <a href='#' onclick='humane.timeout = 3000'>3 Secs (Default)</a>
+
+      <h4>Download and Usage</h4>
+      Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.
    </body>
 </html>

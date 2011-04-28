@@ -5,7 +5,7 @@
  *  humane('hello world');
  */
 ;(function(win,doc){
-    var 
+    var
         eventOn = function(type,fn){ win.addEventListener ? win.addEventListener(type,fn,false) : win.attachEvent('on'+type,fn)},
         eventOff = function(type,fn){ win.removeEventListener ? win.removeEventListener(type,fn,false) : win.detachEvent('on'+type,fn)},
 
@@ -34,8 +34,8 @@
         if(animationInProgress) return;
 
         animationInProgress = true;
-        level = parseInt(level *= 100); // avoid floating point issues
-        var opacity = level ? 0 : 100; // avoid floating point issues
+        var opacity = useFilter ? humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity : (humaneEl.style.opacity * 100)|0;
+        level = (level *= 100)|0; // avoid floating point issues
         var isLess = opacity > level;
 
         if(level == 100) {
@@ -49,11 +49,10 @@
                 if(level == 0) humaneEl.style.visibility = "hidden";
                 humane.run();
             }
-            opacity += isLess ? -5 : 5;
-            if(useFilter)
-                humaneEl.style.filter = "progid:DXImageTransform.Microsoft.alpha(opacity="+opacity+")";
+            opacity += isLess ? -10 : 10;
+            if(useFilter) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity;
             else humaneEl.style.opacity = opacity / 100;
-        },1000 / 25);
+        },500 / 20);
     }
 
     function animate(level){
@@ -73,6 +72,7 @@
             humaneEl.id = 'humane';
             humaneEl.className = 'humane';
             doc.body.appendChild(humaneEl);
+            if(useFilter) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = 0; // reset value so hover states work
             isSetup = true;
 
             humane.setupEvents();

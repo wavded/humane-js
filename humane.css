@@ -17,13 +17,13 @@ html, body {
   opacity               : 0;
   z-index               : 100000;
   background-color      : #000;
-  background-color      : rgba(0,0,0,.8);
+  background-color      : rgba(0,0,0,0.8);
   background-image      : -moz-linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
   background-image      : -ms-linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
   background-image      : -o-linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
   background-image      : -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.8)), to(rgba(50,50,50,.8)));
   background-image      : -webkit-linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
-  background-image      : linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
+  background-image      : linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));;
   -moz-border-radius    : 15px;
   -webkit-border-radius : 15px;
   -o-border-radius      : 15px;
@@ -37,8 +37,8 @@ html, body {
   -o-transition         : all .5s;
   transition            : all .5s;
   visibility            : hidden;
-  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=0)
-  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=0)"
+  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=100);
+  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=100)";
 }
 .humane.humane-show {
   opacity: 1;
@@ -46,6 +46,10 @@ html, body {
 }
 div.humane.humane-show:hover {
   opacity: 0.2;
+}
+.humane:hover {
+  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=20);
+  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=20)";
 }
 .humane p {
   margin                : 1em;
