@@ -39,7 +39,7 @@ Humane is very simple, only the timeout before the popup disappears is configura
 <pre>
 humane.timeout = 2000
 </pre>
-Default timeout is 3 seconds.
+Default timeout is 2 seconds.
 
 ## Contribute
 

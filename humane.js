@@ -116,5 +116,5 @@
     };
 
     win.humane = humane.notify;
-    win.humane.timeout = 3000;
+    win.humane.timeout = 2000;
 }(window,document));
