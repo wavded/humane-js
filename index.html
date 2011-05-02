@@ -8,6 +8,16 @@
             padding: 80px;
             background-color: #eee;
          }
+         h1,h3 {
+            text-shadow: 0 -1px 1px #aaa;
+         }
+         pre {
+            background-color: #ddd;
+            padding: 10px;
+         }
+         blockquote {
+            font-size: 0.8em
+         }
       </style>
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
       <link rel='stylesheet' href='humane.css'/>
@@ -17,24 +27,51 @@
       <a href="http://github.com/wavded/humane-js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
       <h1>Humane JS</h1>
-      <p>Click a notification sample to view:</p>
+      <p>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</p>
+      <small>Samples (click to view):</small>
 
       <a href='javascript:humane("Welcome Back")'>
-         <pre>humane("Welcome Back")</pre>
+         <pre>humane("Welcome Back");</pre>
       </a>
       <a href='javascript:humane("Record <b>392</b> has been updated")'>
-         <pre>humane("Record &lt;b>392&lt;/b> has been updated")</pre>
+         <pre>humane("Record &lt;b>392&lt;/b> has been updated");</pre>
       </a>
       <a href='javascript:humane("<p style=\"color:red\">Invalid Username and/or Password</p>")'>
-         <pre>humane("&lt;p style='color:red'>Invalid Username and/or Password&lt;/p>")</pre>
+         <pre>humane("&lt;p style='color:red'>Invalid Username and/or Password&lt;/p>");</pre>
       </a>
 
-      <p>Set hide delay time by: <pre>humane.timeout = (milliseconds)</pre> Examples (select one and try samples again): </p>
-      <a href='#' onclick='humane.timeout = 500'>.5 Sec</a> |
-      <a href='#' onclick='humane.timeout = 10000'>10 Secs</a> |
-      <a href='#' onclick='humane.timeout = 2000'>2 Secs (Default)</a>
+      <h3>Options</h3>
+      <pre>humane.timeout = (number of milliseconds);</pre>
+      <blockquote>
+         <p>Sets the delay before a message fades out.</p>
+         <p>
+            Try It:
+            <input type='radio' name='timeout' onclick='humane.timeout = 2000' checked> 2000 <small>(2s - default)</small>
+            <input type='radio' name='timeout' onclick='humane.timeout = 5000'> 5000 <small>(5s)</small>
+            <input type='radio' name='timeout' onclick='humane.timeout = 500'> 500 <small>(0.5s)</small>
+         </p>
+      </blockquote>
+      <pre>humane.waitForMove = (true|false);</pre>
+      <blockquote>
+         <p>Wait for mouse, or keyboard action to be taken before clearing message (after timeout)</p>
+         <p>
+            Try It:
+            <input type='radio' name='waitformove' onclick='humane.waitForMove = true' checked> true <small>(default)</small>
+            <input type='radio' name='waitformove' onclick='humane.waitForMove = false'> false
+         </p>
+      </blockquote>
 
-      <h4>Download and Usage</h4>
+      <h3>Browser Support</h3>
+      <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
+      <ul>
+         <li>Internet Explorer 6+</li>
+         <li>Firefox 3+</li>
+         <li>Chrome 9+</li>
+         <li>Safari 3+</li>
+         <li>Opera 10+</li>
+      </ul>
+
+      <h3>Download and Usage</h3>
       Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.
    </body>
 </html>

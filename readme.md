@@ -7,47 +7,26 @@ control over the timing.
 Humane JS tries to be as unobtrusive as possible to the user experience while providing helpful information that is
 clear and grabs the users attention.  It is framework independent.  Customizable.
 
-## Demo
-
-You can see a demo [here](http://wavded.github.com/humane-js/)
-
-## Testing
-I personally have tested IE 6+, Firefox and Chrome, but there is support for Opera and Safari that has been accounted
-for.  Please let me know if you have any issues.  I believe the following is safe to use:
-
-  - Chrome 9+
-  - Firefox 3+
-  - Internet Explorer 6+
-  - Opera 10+
-  - Safari 3+
-
 ## Setup
 Simply include the JS and CSS file on your page.
 
-## Usage
-Humane adds a `humane` function to the global scope that you simply call
-<pre>
-humane('hello world');
-</pre>
-You also can use HTML
-<pre>
-humane('&lt;span style="color:red">oh no!&lt;/span>');
-</pre>
+## Demo/Usage
 
-## Configuration
-Humane is very simple, only the timeout before the popup disappears is configurable
-<pre>
-humane.timeout = 2000
-</pre>
-Default timeout is 2 seconds.
+You can see a [demo and usage here](http://wavded.github.com/humane-js/)
 
-## Contribute
+## Browser Support
 
-I know improvements could be made, please help!  This is just getting started.  My goal is to keep the system very simple and small.
+Humane has been well tested for the following browsers.
+
+  - Internet Explorer 6+
+  - Firefox 3+
+  - Chrome 9+
+  - Safari 3+
+  - Opera 10+
 
 ## Contributers
 
-Many thanks to the JS wizards that helped make this better:
+Many thanks to the JS/Browser wizards that helped make this better, community rocks!
 
 - @bga_ (Alexander)
 - @joseanpg (Jose)
