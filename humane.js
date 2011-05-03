@@ -54,15 +54,11 @@
         eventOff(doc.body,'click',remove);
         eventOff(doc.body,'keypress',remove);
         eventing = false;
-        if(timeout){
-            clearTimeout(timeout);
-            timeout = null;
-        }
         if(animationInProgress) animate(0);
     }
 
     function run() {
-        if(animationInProgress) return;
+        if(animationInProgress && !win.humane.forceNew) return;
         if(!queue.length){
             remove();
             return;
@@ -70,7 +66,12 @@
 
         animationInProgress = true;
 
-        setTimeout(function(){ // allow notification to stay alive for timeout
+        if(timeout){
+            clearTimeout(timeout);
+            timeout = null;
+        }
+
+        timeout = setTimeout(function(){ // allow notification to stay alive for timeout
             if(!eventing){
                 eventOn(doc.body,'mousemove',remove);
                 eventOn(doc.body,'click',remove);
@@ -78,7 +79,6 @@
                 eventing = true;
                 if(!win.humane.waitForMove) remove();
             }
-            // remove();
         }, win.humane.timeout);
 
         humaneEl.innerHTML = queue.shift();
@@ -117,6 +117,9 @@
 
         if (level === 1) {
             opacity = 0;
+            if(win.humane.forceNew){
+                opacity = useFilter ? humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity/100|0 : humaneEl.style.opacity|0;
+            }
             humaneEl.style.visibility = "visible";
             interval = setInterval(function(){
                 if(opacity < 1) {
@@ -153,5 +156,6 @@
     win.humane = notify;
     win.humane.timeout = 2000;
     win.humane.waitForMove = true;
+    win.humane.forceNew = false;
 
 }(window,document));
