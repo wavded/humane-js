@@ -60,6 +60,15 @@
             <input type='radio' name='waitformove' onclick='humane.waitForMove = false'> false
          </p>
       </blockquote>
+      <pre>humane.forceNew = (true|false);</pre>
+      <blockquote>
+         <p>Force new messages to appear immediately</p>
+         <p>
+            Try It:
+            <input type='radio' name='forceNew' onclick='humane.forceNew = true'> true
+            <input type='radio' name='forceNew' onclick='humane.forceNew = false' checked> false <small>(default)</small>
+         </p>
+      </blockquote>
 
       <h3>Browser Support</h3>
       <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
