@@ -14,6 +14,10 @@ Simply include the JS and CSS file on your page.
 
 You can see a [demo and usage here](http://wavded.github.com/humane-js/)
 
+## Custom Theme Support
+
+This is coming.  Allowing you to fork the project and add your own themes and push them back to this repo.
+
 ## Browser Support
 
 Humane has been well tested for the following browsers.
