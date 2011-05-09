@@ -31,7 +31,7 @@ div.humane.humane-show:hover { opacity: 0.2; }
   top                   : 25%;
   left                  : 25%;
   opacity               : 0;
-  min-width             : 50%;
+  width                 : 50%;
   color                 : #000;
   padding               : 10px;
   text-align            : center;
