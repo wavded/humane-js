@@ -1,21 +1,39 @@
-/* humane.css */
-html, body {
-  height                : 100%;
+/* recommended base settings */
+html, body { height: 100%; }
+.humane {
+  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=100);
+  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=100)";
+  position              : fixed;
+  _position             : absolute; /* ie6 */
+  -moz-transition       : all .5s;  /* .5s transition */
+  -webkit-transition    : all .5s;
+  -o-transition         : all .5s;
+  -ms-transition        : all .5s;
+  transition            : all .5s;
+  visibility            : hidden;
+  z-index               : 100000;
 }
+.humane.humane-show { visibility : visible; }
+/* ie hover state, recommended */
+.humane:hover {
+  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=20);
+  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=20)";
+}
+/* standards hover state, recommended */
+div.humane.humane-show:hover { opacity: 0.2; }
+
+/* custom settings */
 .humane {
   font-family           : Verdana, sans-serif;
   font-size             : 25px;
   letter-spacing        : -1px;
-  position              : fixed;
-  _position             : absolute;
   top                   : 25%;
   left                  : 25%;
-  min-width             : 50%;
+  opacity               : 0;
+  width                 : 50%;
   color                 : #fff;
   padding               : 10px;
   text-align            : center;
-  opacity               : 0;
-  z-index               : 100000;
   background-color      : #000;
   background-color      : rgba(0,0,0,0.8);
   background-image      : -moz-linear-gradient(top, rgba(0,0,0,.8), rgba(50,50,50,.8));
@@ -32,25 +50,12 @@ html, body {
   -moz-box-shadow       : 0 4px 4px -4px #000;
   -webkit-box-shadow    : 0 4px 4px -4px #000;
   box-shadow            : 0 4px 4px -4px #000;
-  -moz-transition       : all .5s;
-  -webkit-transition    : all .5s;
-  -o-transition         : all .5s;
-  transition            : all .5s;
-  visibility            : hidden;
-  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=100);
-  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=100)";
 }
-.humane.humane-show {
-  opacity: 1;
-  visibility: visible;
-}
-div.humane.humane-show:hover {
-  opacity: 0.2;
-}
-.humane:hover {
-  filter                : progid:DXImageTransform.Microsoft.alpha(opacity=20);
-  -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=20)";
-}
+
+/* custom animation for css transition supported browsers */
+.humane.humane-show { opacity: 1; }
+
+/* other customizations */
 .humane p {
   margin                : 1em;
   display               : inline;

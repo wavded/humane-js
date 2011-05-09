@@ -8,11 +8,20 @@ Humane JS tries to be as unobtrusive as possible to the user experience while pr
 clear and grabs the users attention.  It is framework independent.  Customizable.
 
 ## Setup
-Simply include the JS and CSS file on your page.
+Setup is simple:
+
+  - Download tar/zip
+  - Select a [theme](humane-js/wiki/Themes) from humane-themes dir. (or use bold-dark.css if you want the one on the demo)
+  - Include the theme CSS in your page
+  - Include humane.js in your page
 
 ## Demo/Usage
 
 You can see a [demo and usage here](http://wavded.github.com/humane-js/)
+
+## Custom Themes
+
+Got a neat theme and/or animation, love to see it.  View `humane-themes/bold-dark.css` for an template to get started.  Please fork the project and submit your themes and then update the [wiki](humane-js/wiki/Themes) page with a screenshot and/or description.
 
 ## Browser Support
 
