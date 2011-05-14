@@ -69,7 +69,4 @@ div.humane.humane-show:hover { opacity: 0.2; }
 .humane .error {
   color                 : red;
   text-shadow           : 0 -1px 1px #f33;
-  list-style            : none;
-  margin                : .3em;
-  padding               : .3em;
 }
