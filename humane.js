@@ -53,6 +53,7 @@
         eventOff(doc.body,'mousemove',remove);
         eventOff(doc.body,'click',remove);
         eventOff(doc.body,'keypress',remove);
+        eventOff(doc.body,'touchstart',remove);
         eventing = false;
         if(animationInProgress) animate(0);
     }
@@ -76,6 +77,7 @@
                 eventOn(doc.body,'mousemove',remove);
                 eventOn(doc.body,'click',remove);
                 eventOn(doc.body,'keypress',remove);
+                eventOn(doc.body,'touchstart',remove);
                 eventing = true;
                 if(!win.humane.waitForMove) remove();
             }
