@@ -20,7 +20,7 @@
          }
       </style>
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-      <link rel='stylesheet' href='humane-themes/bold-dark.css'/>
+      <link id='theme' rel='stylesheet' href='humane-themes/bold-dark.css'/>
       <script src='humane.js'></script>
    </head>
    <body>
@@ -28,7 +28,11 @@
 
       <h1>Humane JS</h1>
       <p>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</p>
-      <small>Samples (click to view):</small>
+      <small>Samples (click to view): Theme: </small>
+      <select onchange='document.getElementById("theme").href = "humane-themes/" + this.options[this.selectedIndex].value + ".css"'>
+         <option selected>bold-dark</option>
+         <option>bold-light</option>
+      </select>
 
       <a href='javascript:humane("Welcome Back")'>
          <pre>humane("Welcome Back");</pre>
@@ -82,6 +86,7 @@
 
       <h3>Themes</h3>
       <p>Humane is intended to be easily themable.  There are currently a few <a href='https://github.com/wavded/humane-js/wiki/Themes'>themes</a>, but I hope this grows.  Send me a pull request and update the wiki with your favorite look and feel.</p>
+
 
       <h3>Download and Usage</h3>
       Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.
