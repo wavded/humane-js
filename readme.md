@@ -21,7 +21,7 @@ You can see a [demo and usage here](http://wavded.github.com/humane-js/)
 
 ## Custom Themes
 
-Got a neat theme/animation, love to see it.  View `humane-themes/bold-dark.css` for an template to get started.  Please fork the project and submit your themes and then update the [wiki](humane-js/wiki/Themes) page with a screenshot and/or description.  Please ensure your theme is viewable on IE6+.
+Got a neat theme/animation, love to see it.  View `humane-themes/bold-dark.css` for an template to get started.  Please fork the project and submit your themes and then update the [wiki](humane-js/wiki/Themes) page with a screenshot and/or description.  Please check that your theme is usable (even if degraded) on IE6+.
 
 ## Browser Support
 
