@@ -5,11 +5,11 @@ html, body { height: 100%; }
   -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=100)";
   position              : fixed;
   _position             : absolute; /* ie6 */
-  -moz-transition       : all .2s;  /* .5s transition */
+  -moz-transition       : all .2s ease-in;  /* .2s transition */
   -webkit-transition    : all .2s ease-in;
-  -o-transition         : all .2s;
-  -ms-transition        : all .2s;
-  transition            : all .2s;
+  -o-transition         : all .2s ease-in;
+  -ms-transition        : all .2s ease-in;
+  transition            : all .2s ease-in;
   visibility            : hidden;
   z-index               : 100000;
 }
