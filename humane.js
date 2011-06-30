@@ -100,7 +100,7 @@
         setTimeout(function(){
             animationInProgress = false;
             run();
-        },600);
+        },500);
     }
 
     // if CSS Transitions not supported, fallback to JS Animation
@@ -134,7 +134,7 @@
                 else {
                     clearInterval(interval);
                 }
-            }, 500 / 20);
+            }, 200 / 20);
         } else {
             opacity = 1;
             interval = setInterval(function(){
@@ -148,7 +148,7 @@
                     humaneEl.style.visibility = "hidden";
                     end();
                 }
-            }, 500 / 20);
+            }, 200 / 20);
         }
     }
 
@@ -158,8 +158,8 @@
     }
 
     win.humane = notify;
-    win.humane.timeout = 2000;
-    win.humane.waitForMove = true;
+    win.humane.timeout = 2500;
+    win.humane.waitForMove = false;
     win.humane.forceNew = false;
 
 }(window,document));
