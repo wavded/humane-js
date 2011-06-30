@@ -36,12 +36,12 @@ div.humane.humane-show:hover { opacity: 0.2; }
   text-align            : center;
   background-color      :                                                       rgb(255,255,255);
   background-color      :                                                      rgba(255,255,255,0.8);
-  background-image      : -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(150,150,150,.8)));
-  background-image      : -webkit-linear-gradient(                        top, rgba(255,255,255,0.8),     rgba(150,150,150,.8));
-  background-image      : -moz-linear-gradient(                           top, rgba(255,255,255,0.8),     rgba(150,150,150,.8));
-  background-image      : -ms-linear-gradient(                            top, rgba(255,255,255,0.8),     rgba(150,150,150,.8));
-  background-image      : -o-linear-gradient(                             top, rgba(255,255,255,0.8),     rgba(150,150,150,.8));
-  background-image      : linear-gradient(                                top, rgba(255,255,255,0.8),     rgba(150,150,150,.8));;
+  background-image      : -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(150,150,150,0.8)));
+  background-image      : -webkit-linear-gradient(                        top, rgba(255,255,255,0.8),     rgba(150,150,150,0.8));
+  background-image      : -moz-linear-gradient(                           top, rgba(255,255,255,0.8),     rgba(150,150,150,0.8));
+  background-image      : -ms-linear-gradient(                            top, rgba(255,255,255,0.8),     rgba(150,150,150,0.8));
+  background-image      : -o-linear-gradient(                             top, rgba(255,255,255,0.8),     rgba(150,150,150,0.8));
+  background-image      : linear-gradient(                                top, rgba(255,255,255,0.8),     rgba(150,150,150,0.8));;
   -moz-border-radius    : 15px;
   -webkit-border-radius : 15px;
   -o-border-radius      : 15px;
