@@ -1,3 +1,5 @@
+@import 'http://fonts.googleapis.com/css?family=Ubuntu&v2';
+
 /* recommended base settings */
 html, body { height: 100%; }
 .humane {
@@ -24,7 +26,7 @@ div.humane.humane-show:hover { opacity: 0.2; }
 
 /* custom settings */
 .humane {
-  font-family           : Verdana, sans-serif;
+  font-family           : Ubuntu, Verdana, sans-serif;
   font-size             : 25px;
   letter-spacing        : -1px;
   top                   : 25%;
