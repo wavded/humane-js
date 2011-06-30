@@ -97,8 +97,10 @@
     }
 
     function end(){
-        animationInProgress = false;
-        setTimeout(run,500);
+        setTimeout(function(){
+            animationInProgress = false;
+            run();
+        },500);
     }
 
     // if CSS Transitions not supported, fallback to JS Animation
@@ -125,19 +127,19 @@
             humaneEl.style.visibility = "visible";
             interval = setInterval(function(){
                 if(opacity < 1) {
-                    opacity +=0.1;
+                    opacity += 0.1;
                     if (opacity>1) opacity = 1;
                     setOpacity(opacity);
                 }
                 else {
                     clearInterval(interval);
                 }
-            }, 500 / 20);
+            }, 200 / 20);
         } else {
             opacity = 1;
             interval = setInterval(function(){
                 if(opacity > 0) {
-                    opacity -=0.1;
+                    opacity -= 0.1;
                     if (opacity<0) opacity = 0;
                     setOpacity(opacity);
                 }
@@ -146,7 +148,7 @@
                     humaneEl.style.visibility = "hidden";
                     end();
                 }
-            }, 500 / 20);
+            }, 200 / 20);
         }
     }
 
@@ -156,8 +158,8 @@
     }
 
     win.humane = notify;
-    win.humane.timeout = 2000;
-    win.humane.waitForMove = true;
+    win.humane.timeout = 2500;
+    win.humane.waitForMove = false;
     win.humane.forceNew = false;
 
 }(window,document));

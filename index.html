@@ -44,6 +44,9 @@
       <a href='javascript:humane("<p class=\"error\">Invalid Username and/or Password</p>")'>
          <pre>humane("&lt;p class='error'>Invalid Username and/or Password&lt;/p>");</pre>
       </a>
+      <a href='javascript:humane("<ul><li>List</li><li>Items</li></ul>")'>
+         <pre>humane("&lt;ul>&lt;li>List&lt;/li>&lt;li>Items&lt;/li>&lt;/ul>");</pre>
+      </a>
 
       <h3>Options</h3>
       <pre>humane.timeout = (number of milliseconds);</pre>
@@ -51,7 +54,7 @@
          <p>Sets the delay before a message fades out.</p>
          <p>
             Try It:
-            <input type='radio' name='timeout' onclick='humane.timeout = 2000' checked> 2000 <small>(2s - default)</small>
+            <input type='radio' name='timeout' onclick='humane.timeout = 2500' checked> 2500 <small>(2s - default)</small>
             <input type='radio' name='timeout' onclick='humane.timeout = 5000'> 5000 <small>(5s)</small>
             <input type='radio' name='timeout' onclick='humane.timeout = 500'> 500 <small>(0.5s)</small>
          </p>
@@ -61,8 +64,8 @@
          <p>Wait for mouse, or keyboard action to be taken before clearing message (after timeout)</p>
          <p>
             Try It:
-            <input type='radio' name='waitformove' onclick='humane.waitForMove = true' checked> true <small>(default)</small>
-            <input type='radio' name='waitformove' onclick='humane.waitForMove = false'> false
+            <input type='radio' name='waitformove' onclick='humane.waitForMove = true'> true
+            <input type='radio' name='waitformove' onclick='humane.waitForMove = false' checked> false <small>(default)</small>
          </p>
       </blockquote>
       <pre>humane.forceNew = (true|false);</pre>
