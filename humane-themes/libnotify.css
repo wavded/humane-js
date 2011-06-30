@@ -1,3 +1,5 @@
+@import 'http://fonts.googleapis.com/css?family=Ubuntu&v2';
+
 /* recommended base settings */
 html, body { height: 100%; }
 .humane {
@@ -5,11 +7,11 @@ html, body { height: 100%; }
   -ms-filter            : "progid:DXImageTransform.Microsoft.alpha(opacity=100)";
   position              : fixed;
   _position             : absolute; /* ie6 */
-  -moz-transition       : all .2s;  /* .5s transition */
-  -webkit-transition    : all .2s;
-  -o-transition         : all .2s;
-  -ms-transition        : all .2s;
-  transition            : all .2s;
+  -moz-transition       : all .2s ease-out;  /* .2s transition */
+  -webkit-transition    : all .2s ease-out;
+  -o-transition         : all .2s ease-out;
+  -ms-transition        : all .2s ease-out;
+  transition            : all .2s ease-out;
   visibility            : hidden;
   z-index               : 100000;
 }
@@ -24,7 +26,7 @@ div.humane.humane-show:hover { opacity: 0.2; }
 
 /* custom settings */
 .humane {
-  font-family           : Verdana, sans-serif;
+  font-family           : Ubuntu, sans-serif;
   font-size             : 15px;
   letter-spacing        : -1px;
   top                   : 10px;
@@ -49,8 +51,8 @@ div.humane.humane-show:hover { opacity: 0.2; }
   -moz-box-shadow       : 0 4px 4px -4px #000;
   -webkit-box-shadow    : 0 4px 4px -4px #000;
   box-shadow            : 0 4px 4px -4px #000;
-  -webkit-transform     : translateY(-40px);
   -moz-transform        : translateY(-40px);
+  -webkit-transform     : translateY(-40px);
   -o-transform          : translateY(-40px);
   -ms-transform         : translateY(-40px);
   transform             : translateY(-40px);

@@ -2,17 +2,31 @@
 <html>
    <head>
       <title>Humane JS</title>
+      <link href='http://fonts.googleapis.com/css?family=Ubuntu&v2' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700&v2' rel='stylesheet' type='text/css'>
       <style>
          body {
-            font-family: Verdana, sans-serif;
+            font-family: Ubuntu, sans-serif;
             padding: 80px;
-            background-color: #eee;
+            background-color: #f0f0f0;
          }
          h1,h3 {
-            text-shadow: 0 -1px 1px #aaa;
+            font-family: 'Cabin Sketch', serif;
+            text-shadow: -1px 0px 1px #aaa;
+         }
+         h1 {
+            font-size: 4em;
+            margin: 0
+         }
+         h3 {
+            font-size: 2em;
+            margin: 0
          }
          pre {
-            background-color: #ddd;
+            font-size: 0.9em;
+            background-color: #fff;
+            border: 1px solid #aaa;
+            border-radius: 6px;
             padding: 10px;
          }
          blockquote {
@@ -44,8 +58,8 @@
       <a href='javascript:humane("<p class=\"error\">Invalid Username and/or Password</p>")'>
          <pre>humane("&lt;p class='error'>Invalid Username and/or Password&lt;/p>");</pre>
       </a>
-      <a href='javascript:humane("<ul><li>List</li><li>Items</li></ul>")'>
-         <pre>humane("&lt;ul>&lt;li>List&lt;/li>&lt;li>Items&lt;/li>&lt;/ul>");</pre>
+      <a href='javascript:humane("<ul><li>List</li><li>of</li><li>Items</li></ul>")'>
+         <pre>humane("&lt;ul>&lt;li>List&lt;/li>&lt;li>of&lt;/li>&lt;li>Items&lt;/li>&lt;/ul>");</pre>
       </a>
 
       <h3>Options</h3>
