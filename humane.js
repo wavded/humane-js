@@ -124,7 +124,7 @@
             if(win.humane.forceNew){
                 opacity = useFilter ? humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity/100|0 : humaneEl.style.opacity|0;
             }
-            humaneEl.style.visibility = "visible";
+            humaneEl.style.zIndex = 100000;
             interval = setInterval(function(){
                 if(opacity < 1) {
                     opacity += 0.1;
@@ -145,7 +145,7 @@
                 }
                 else {
                     clearInterval(interval);
-                    humaneEl.style.visibility = "hidden";
+                    humaneEl.style.zIndex = -1;
                     end();
                 }
             }, 200 / 20);
