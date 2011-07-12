@@ -33,6 +33,11 @@ Humane has been well tested for the following browsers.
   - Safari 3+
   - Opera 10+
 
+Expiremental support for mobile:
+
+  - iOS 4+
+  - Android 2+
+
 ## Contributers
 
 Many thanks to the JS/Browser wizards that helped make this better, community rocks!
