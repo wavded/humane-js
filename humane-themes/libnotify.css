@@ -12,10 +12,9 @@ html, body { height: 100%; }
   -o-transition         : all .2s ease-out;
   -ms-transition        : all .2s ease-out;
   transition            : all .2s ease-out;
-  visibility            : hidden;
-  z-index               : 100000;
+  z-index               : -1;
 }
-.humane.humane-show { visibility : visible; }
+.humane.humane-show { z-index: 100000; }
 /* ie hover state, recommended */
 .humane:hover {
   filter                : progid:DXImageTransform.Microsoft.alpha(opacity=20);
