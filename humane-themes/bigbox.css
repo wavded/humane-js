@@ -34,6 +34,7 @@ div.humane.humane-show:hover {
 .humane {
   font-family           : Ubuntu, Verdana, sans-serif;
   font-size             : 35px;
+  line-height           : 40px;
   letter-spacing        : -1px;
   top                   : 25%;
   left                  : 25%;
