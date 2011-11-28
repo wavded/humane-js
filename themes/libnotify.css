@@ -11,7 +11,8 @@ body {
   transition: all 0.3s ease-out;
   z-index: -1;
 }
-.humane.humane-show {
+.humane.humane-animate,
+.humane.humane-js-animate {
   z-index: 100000;
 }
 .humane {
@@ -87,7 +88,7 @@ body {
   background: linear-gradient(top, rgba(50,0,0,0.90) 0%, rgba(100,0,0,0.90) 100%) no-repeat;
   background-color: #300;
 }
-.humane.humane-show {
+.humane.humane-animate {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   -moz-transform: translateY(0);
@@ -96,7 +97,20 @@ body {
   -o-transform: translateY(0);
   transform: translateY(0);
 }
-.humane.humane-show:hover {
+.humane.humane-animate:hover {
+  opacity: 0.2;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+}
+.humane.humane-js-animate {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+}
+.humane.humane-js-animate:hover {
   opacity: 0.2;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
 }
