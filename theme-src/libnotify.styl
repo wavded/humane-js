@@ -6,7 +6,7 @@ html, body { height: 100% }
   position   : fixed
   transition : all .3s ease-out
   z-index    : -1
-.humane.humane-show
+.humane.humane-animate, .humane.humane-js-animate
   z-index    : 100000
 
 .humane
@@ -43,7 +43,13 @@ html, body { height: 100% }
     background        : linear-gradient(top, rgba(50,0,0,0.9), rgba(100,0,0,0.9)) no-repeat
     background-color  : #300
 
-.humane.humane-show
+.humane.humane-animate
+  opacity           : 1
+  transform         : translateY(0)
+  &:hover
+    opacity         : 0.2
+
+.humane.humane-js-animate
   opacity           : 1
   transform         : translateY(0)
   &:hover

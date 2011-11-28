@@ -46,7 +46,6 @@
     humaneEl.id = 'humane';
     humaneEl.className = 'humane';
     doc.body.appendChild(humaneEl);
-    if (useFilter) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = 0; // reset value so hover states work
     isSetup = true;
   }
 
@@ -89,10 +88,10 @@
 
   function animate (type,level) {
     if(level === 1){
-      humaneEl.className = "humane humane-" + type + " humane-show";
+      humaneEl.className = "humane humane-" + type + " humane-animate";
     }
     else {
-      humaneEl.className = humaneEl.className.replace(" humane-show","");
+      humaneEl.className = humaneEl.className.replace(" humane-animate","");
       end();
     }
   }
@@ -119,9 +118,12 @@
   function jsAnimateOpacity(type,level){
     var interval;
     var opacity;
+
     if (level === 1) {
-      humaneEl.className = "humane humane-" + type + " humane-show";
       opacity = 0;
+      humaneEl.className = "humane humane-js-animate humane-" + type;
+      if (humaneEl.filters) humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = 0; // reset value so hover states work
+
       if (win.humane.forceNew) {
         opacity = useFilter
           ? humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity/100|0
@@ -136,22 +138,22 @@
         else {
           clearInterval(interval);
         }
-      }, 200 / 20);
+      }, 100 / 20);
     }
     else {
       opacity = 1;
       interval = setInterval(function(){
         if(opacity > 0) {
           opacity -= 0.1;
-          if (opacity<0) opacity = 0;
+          if (opacity < 0) opacity = 0;
           setOpacity(opacity);
         }
         else {
-          humaneEl.className = humaneEl.className.replace(" humane-show","");
+          humaneEl.className = humaneEl.className.replace(" humane-js-animate","");
           clearInterval(interval);
           end();
         }
-      }, 200 / 20);
+      }, 100 / 20);
     }
   }
 

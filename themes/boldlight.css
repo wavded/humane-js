@@ -11,7 +11,8 @@ body {
   transition: all 0.3s ease-out;
   z-index: -1;
 }
-.humane.humane-show {
+.humane.humane-animate,
+.humane.humane-js-animate {
   z-index: 100000;
 }
 .humane {
@@ -89,7 +90,7 @@ body {
   background: linear-gradient(top, #ff6464 0%, rgba(255,100,100,0.80) 100%) no-repeat;
   background-color: #ff6464;
 }
-.humane.humane-show {
+.humane.humane-animate {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   -moz-transform: scale(1);
@@ -98,7 +99,7 @@ body {
   -o-transform: scale(1);
   transform: scale(1);
 }
-.humane.humane-show:hover {
+.humane.humane-animate:hover {
   opacity: 0.2;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
   -moz-transform: scale(1.8);
@@ -106,4 +107,17 @@ body {
   -ms-transform: scale(1.8);
   -o-transform: scale(1.8);
   transform: scale(1.8);
+}
+.humane.humane-js-animate {
+  opacity: 1;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+.humane.humane-js-animate:hover {
+  opacity: 0.2;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
 }

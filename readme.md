@@ -11,9 +11,9 @@ clear and grabs the users attention.  It is framework independent.  Customizable
 Setup is simple:
 
   - Download tar/zip
-  - Select a [theme](humane-js/wiki/Themes) from humane-themes dir. (or use bold-dark.css if you want the one on the demo)
+  - Select a [theme](humane-js/wiki/Themes) from `themes` dir. (or use `bigbox.css` if you want the one on the demo)
   - Include the theme CSS in your page
-  - Include humane.js in your page
+  - Include `humane.min.js` in your page
 
 ## Demo/Usage
 
@@ -21,7 +21,19 @@ You can see a [demo and usage here](http://wavded.github.com/humane-js/)
 
 ## Custom Themes
 
-Got a neat theme/animation, love to see it.  View `humane-themes/bold-dark.css` for an template to get started.  Please fork the project and submit your themes and then update the [wiki](humane-js/wiki/Themes) page with a screenshot and/or description.  Please check that your theme is usable (even if degraded) on IE6+.
+Got a neat theme/animation, love to see it.  View `theme-src/bigbox.styl` for an template to get started (uses [Stylus](http://learnboost.github.com/stylus/) w/ Nib and Canvas).
+
+To get setup with Stylus use [npm](http://npmjs.org):
+
+```sh
+(sudo) npm install -g stylus nib canvas
+```
+
+With Stylus installed you can watch for changes and compile into CSS by running:
+
+```sh
+make watch
+```
 
 ## Browser Support
 
@@ -54,8 +66,7 @@ Copyright (c) 2011 Marc Harter &lt;wavded@gmail.com&gt;
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
+without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
 permit persons to whom the Software is furnished to do so, subject to
 the following conditions:
 
