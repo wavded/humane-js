@@ -27,7 +27,7 @@ Got a neat theme/animation, love to see it.  View `humane-themes/bold-dark.css` 
 
 Humane has been well tested for the following browsers.
 
-  - Internet Explorer 6+
+  - Internet Explorer 7+
   - Firefox 3+
   - Chrome 9+
   - Safari 3+

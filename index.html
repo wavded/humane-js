@@ -3,6 +3,7 @@
    <head>
       <title>Humane JS</title>
       <link href='http://fonts.googleapis.com/css?family=Ubuntu&v2' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700&v2' rel='stylesheet' type='text/css'>
       <style>
          body {
@@ -22,19 +23,29 @@
             font-size: 2em;
             margin: 0
          }
+         a {
+            text-decoration: none;
+            color: #a13;
+            font-weight: bold;
+         }
+         a:hover {
+            text-decoration: underline;
+         }
          pre {
+            font-family: "Ubuntu Mono";
             font-size: 0.9em;
             background-color: #fff;
             border: 1px solid #aaa;
             border-radius: 6px;
             padding: 10px;
+            text-decoration: none;
          }
          blockquote {
             font-size: 0.8em
          }
       </style>
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-      <link id='theme' rel='stylesheet' href='humane-themes/bold-dark.css'/>
+      <link id='theme' rel='stylesheet' href='themes/bigbox.css'/>
       <script src='humane.js'></script>
    </head>
    <body>
@@ -43,25 +54,24 @@
       <h1>Humane JS</h1>
       <p>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</p>
       <small>Samples (click to view): Theme: </small>
-      <select onchange='document.getElementById("theme").href = "humane-themes/" + this.options[this.selectedIndex].value + ".css"'>
-         <option selected>bold-dark</option>
-         <option>bold-light</option>
+      <select onchange='document.getElementById("theme").href = "themes/" + this.options[this.selectedIndex].value + ".css"'>
+         <option selected>bigbox</option>
          <option>libnotify</option>
-         <option>bigbox</option>
-         <option>gshellish</option>
+         <option>boldlight</option>
       </select>
 
-      <a href='javascript:humane("Welcome Back")'>
-         <pre>humane("Welcome Back");</pre>
+      <a href='javascript:humane.log("Welcome Back")'>
+         <pre>humane("Welcome Back");
+humane.log("Welcome Back");</pre>
       </a>
-      <a href='javascript:humane("Record <b>392</b> has been updated")'>
-         <pre>humane("Record &lt;b>392&lt;/b> has been updated");</pre>
+      <a href='javascript:humane.info("Record <b>392</b> has been updated")'>
+         <pre>humane.info("Record &lt;b>392&lt;/b> has been updated");</pre>
       </a>
-      <a href='javascript:humane("<p class=\"error\">Invalid Username and/or Password</p>")'>
-         <pre>humane("&lt;p class='error'>Invalid Username and/or Password&lt;/p>");</pre>
+      <a href='javascript:humane.error("Invalid Username and/or Password")'>
+         <pre>humane.error("Invalid Username and/or Password");</pre>
       </a>
-      <a href='javascript:humane("<ul><li>List</li><li>of</li><li>Items</li></ul>")'>
-         <pre>humane("&lt;ul>&lt;li>List&lt;/li>&lt;li>of&lt;/li>&lt;li>Items&lt;/li>&lt;/ul>");</pre>
+      <a href='javascript:humane.success(["List","of","Items"])'>
+         <pre>humane.success(["List","of","Items"]);</pre>
       </a>
 
       <h3>Options</h3>
@@ -97,7 +107,7 @@
       <h3>Browser Support</h3>
       <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
       <ul>
-         <li>Internet Explorer 6+</li>
+         <li>Internet Explorer 7+</li>
          <li>Firefox 3+</li>
          <li>Chrome 9+</li>
          <li>Safari 3+</li>
