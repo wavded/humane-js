@@ -1,0 +1,50 @@
+@import 'nib'
+vendor-prefixes = moz webkit ms o official
+
+html, body { height: 100% }
+.humane
+  position   : fixed
+  transition : all .3s ease-out
+  z-index    : -1
+.humane.humane-show
+  z-index    : 100000
+
+.humane
+  font-family       : Ubuntu, Arial, sans-serif
+  text-align        : center
+  font-size         : 15px
+  top               : 10px
+  right             : 10px
+  opacity           : 0
+  width             : 150px
+  color             : #fff
+  padding           : 10px
+  background-color  : rgb(0,0,0)
+  background        : linear-gradient-image(80px, rgba(0,0,0,0.9), rgba(50,50,50,0.9))
+  background        : linear-gradient(top, rgba(0,0,0,0.9), rgba(50,50,50,0.9)) no-repeat
+  border-radius     : 5px
+  box-shadow        : 0 4px 4px -4px #000
+  transform         : translateY(-40px)
+  p, ul
+    margin: 0
+    padding: 0
+  ul
+    list-style: none
+  &.humane-info
+    background-image  : linear-gradient-image(80px, rgba(0,0,50,0.9), rgba(0,0,100,0.9))
+    background        : linear-gradient(top, rgba(0,0,50,0.9), rgba(0,0,100,0.9)) no-repeat
+    background-color  : #030
+  &.humane-success
+    background-image  : linear-gradient-image(80px, rgba(0,50,0,0.9), rgba(0,100,0,0.9))
+    background        : linear-gradient(top, rgba(0,50,0,0.9), rgba(0,100,0,0.9)) no-repeat
+    background-color  : #030
+  &.humane-error
+    background-image  : linear-gradient-image(200px, rgba(50,0,0,0.9), rgba(100,0,0,0.9))
+    background        : linear-gradient(top, rgba(50,0,0,0.9), rgba(100,0,0,0.9)) no-repeat
+    background-color  : #300
+
+.humane.humane-show
+  opacity           : 1
+  transform         : translateY(0)
+  &:hover
+    opacity         : 0.2
