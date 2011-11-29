@@ -1,4 +1,11 @@
 
+2.1.1 / 2011-11-28 
+==================
+
+  * fixed; restore original class after completion
+  * added; jackedup theme
+  * fixed; some IE fixes
+
 2.1.0 / 2011-11-28 
 ==================
 
