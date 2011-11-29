@@ -22,10 +22,10 @@ html, body { height: 100% }
   text-align       : center
   background-image : linear-gradient-image(150px, rgba(255,255,255,0.8), rgba(150,150,150,0.8))
   background       : linear-gradient(top, rgba(255,255,255,0.8), rgba(150,150,150,0.8)) no-repeat
-  background-color : #fff
+  *background-color: #fff
   border-radius    : 15px
   text-shadow      : 0 -1px 1px rgba(#ddd,0.4)
-  box-shadow       : 0 4px 4px -4px #000
+  box-shadow       : 0 4px 4px -4px #eee
   transform        : scale(1.1)
   p, ul
     margin: 0
@@ -35,25 +35,25 @@ html, body { height: 100% }
   &.humane-info
     background-image  : linear-gradient-image(200px, rgba(100,100,255,1), rgba(100,100,255,0.8))
     background        : linear-gradient(top, rgba(100,100,255,1), rgba(100,100,255,0.8)) no-repeat
-    background-color  : rgb(100,100,255)
+    *background-color  : rgb(100,100,255)
   &.humane-success
-    background-image  : linear-gradient-image(200px, rgba(100,255,100,1), rgba(100,255,100,0.8))
+    background-image  : linear-gradient-image(200px, rgba(100,255,100,0.8), rgba(100,255,100,0.8))
     background        : linear-gradient(top, rgba(100,255,100,1), rgba(100,255,100,0.8)) no-repeat
-    background-color  : rgb(100,255,100)
+    *background-color  : rgb(100,255,100)
   &.humane-error
-    background-image  : linear-gradient-image(200px, rgba(255,100,100,1), rgba(255,100,100,0.8))
+    background-image  : linear-gradient-image(200px, rgba(255,100,100,0.8), rgba(255,100,100,0.8))
     background        : linear-gradient(top, rgba(255,100,100,1), rgba(255,100,100,0.8)) no-repeat
-    background-color  : rgb(255,100,100)
+    *background-color  : rgb(255,100,100)
 
 .humane.humane-animate
   opacity   : 1
   transform : scale(1)
   &:hover
-    opacity   : 0.2
+    opacity   : 0.4
     transform : scale(1.8)
 
 .humane.humane-js-animate
   opacity   : 1
   transform : scale(1)
   &:hover
-    opacity   : 0.2
+    opacity   : 0.4
