@@ -99,6 +99,7 @@
   function end(){
     setTimeout(function(){
       animationInProgress = false;
+      humaneEl.className = "humane";
       run();
     },500);
   }
