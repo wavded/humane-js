@@ -23,6 +23,9 @@
             font-size: 2em;
             margin: 0
          }
+         select {
+            font-size: 0.8em;
+         }
          a {
             text-decoration: none;
             color: #a13;
@@ -52,14 +55,18 @@
       <a href="http://github.com/wavded/humane-js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
       <h1>Humane JS</h1>
-      <p>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</p>
-      <small>Samples (click to view): Theme: </small>
-      <select onchange='document.getElementById("theme").href = "themes/" + this.options[this.selectedIndex].value + ".css"'>
-         <option selected>bigbox</option>
-         <option>libnotify</option>
-         <option>boldlight</option>
-         <option>jackedup</option>
-      </select>
+      <p>
+         <strong>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</strong>
+         <br/>Utilizes CSS transitions when available, falls back to JS animation when not.  Includes mobile support.
+      </p>
+      <h3>Select A Theme: 
+         <select onchange='document.getElementById("theme").href = "themes/" + this.options[this.selectedIndex].value + ".css"'>
+            <option selected>bigbox</option>
+            <option>libnotify</option>
+            <option>boldlight</option>
+            <option>jackedup</option>
+         </select>
+      </h3>
 
       <a href='javascript:humane.log("Welcome Back")'>
          <pre>humane("Welcome Back");
@@ -117,11 +124,11 @@ humane.log("Welcome Back");</pre>
          <li>Android (experimental support)</li>
       </ul>
 
-      <h3>Themes</h3>
-      <p>Humane is intended to be easily themable.  There are currently a few <a href='https://github.com/wavded/humane-js/wiki/Themes'>themes</a>, but I hope this grows.  Send me a pull request and update the wiki with your favorite look and feel.</p>
+      <h3>Create A Custom Theme</h3>
+      <p>Humane is easily themable using <a href="http://learnboost.github.com/stylus">Stylus</a>.  There are currently a few <a href='https://github.com/wavded/humane-js/wiki/Themes'>themes</a>, but I hope this grows.  Send me a pull request and update the wiki with your favorite look and feel.</p>
 
 
       <h3>Download and Usage</h3>
-      Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.
+      <p>Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.</p>
    </body>
 </html>
