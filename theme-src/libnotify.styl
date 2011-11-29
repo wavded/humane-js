@@ -19,9 +19,9 @@ html, body { height: 100% }
   width             : 150px
   color             : #fff
   padding           : 10px
-  background-color  : rgb(0,0,0)
-  background        : linear-gradient-image(80px, rgba(0,0,0,0.9), rgba(50,50,50,0.9))
+  background-image  : linear-gradient-image(80px, rgba(0,0,0,0.9), rgba(50,50,50,0.9))
   background        : linear-gradient(top, rgba(0,0,0,0.9), rgba(50,50,50,0.9)) no-repeat
+  *background-color : #000
   border-radius     : 5px
   box-shadow        : 0 4px 4px -4px #000
   transform         : translateY(-40px)
@@ -33,15 +33,15 @@ html, body { height: 100% }
   &.humane-info
     background-image  : linear-gradient-image(80px, rgba(0,0,50,0.9), rgba(0,0,100,0.9))
     background        : linear-gradient(top, rgba(0,0,50,0.9), rgba(0,0,100,0.9)) no-repeat
-    background-color  : #030
+    *background-color : #030
   &.humane-success
     background-image  : linear-gradient-image(80px, rgba(0,50,0,0.9), rgba(0,100,0,0.9))
     background        : linear-gradient(top, rgba(0,50,0,0.9), rgba(0,100,0,0.9)) no-repeat
-    background-color  : #030
+    *background-color  : #030
   &.humane-error
     background-image  : linear-gradient-image(200px, rgba(50,0,0,0.9), rgba(100,0,0,0.9))
     background        : linear-gradient(top, rgba(50,0,0,0.9), rgba(100,0,0,0.9)) no-repeat
-    background-color  : #300
+    *background-color  : #300
 
 .humane.humane-animate
   opacity           : 1
