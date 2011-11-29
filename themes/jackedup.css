@@ -112,6 +112,11 @@ body {
 .humane.humane-js-animate {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 .humane.humane-js-animate:hover {
   opacity: 0.7;
