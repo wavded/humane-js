@@ -19,7 +19,7 @@ body {
   font-family: Helvetica Neue, Helvetica, san-serif;
   font-size: 18px;
   letter-spacing: -1px;
-  top: -100px;
+  top: 20px;
   left: 30%;
   opacity: 0;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
@@ -46,6 +46,11 @@ body {
   -ms-box-shadow: 0 1px 2px rgba(0,0,0,0.50);
   -o-box-shadow: 0 1px 2px rgba(0,0,0,0.50);
   box-shadow: 0 1px 2px rgba(0,0,0,0.50);
+  -moz-transform: translateY(-100px);
+  -webkit-transform: translateY(-100px);
+  -ms-transform: translateY(-100px);
+  -o-transform: translateY(-100px);
+  transform: translateY(-100px);
 }
 .humane p,
 .humane ul {
@@ -94,7 +99,11 @@ body {
 .humane.humane-animate {
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  top: 20px;
+  -moz-transform: translateY(0);
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
 .humane.humane-animate:hover {
   opacity: 0.7;
