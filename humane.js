@@ -9,7 +9,20 @@
  *  humane('hello world');
  */
 ;(function (win,doc) {
-  var on, off, isArray;
+  var on, 
+  	  off, 
+  	  isArray,
+  	  eventing = false,
+  	  animationInProgress = false,
+  	  humaneEl = null,
+  	  timeout = null,
+  	  useFilter = /msie [678]/i.test(navigator.userAgent), // sniff, sniff,
+  	  vendors = {Webkit: 'webkit', Moz: '', O: 'o', ms: 'MS'},
+  	  eventPrefix = "",
+  	  isSetup = false,
+  	  queue = [],
+  	  after = null;
+  	  
   if ('addEventListener' in win) {
     on  = function (obj,type,fn) { obj.addEventListener(type,fn,false)    };
     off = function (obj,type,fn) { obj.removeEventListener(type,fn,false) };
@@ -19,15 +32,11 @@
     off = function (obj,type,fn) { obj.detachEvent('on'+type,fn) };
   }
   isArray = Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' };
-
-  var eventing = false;
-  var animationInProgress = false;
-  var humaneEl = null;
-  var timeout = null;
-  var useFilter = /msie [678]/i.test(navigator.userAgent); // sniff, sniff
-  var isSetup = false;
-  var queue = [];
-
+  
+  function normalizeEvent(name) { 
+	  return eventPrefix ? eventPrefix + name : name.toLowerCase();
+  }
+  
   on (win,'load',function () {
     var transitionSupported = ( function (style) {
       var prefixes = ['MozT','WebkitT','OT','msT','KhtmlT','t'];
@@ -46,6 +55,10 @@
     humaneEl.id = 'humane';
     humaneEl.className = 'humane';
     doc.body.appendChild(humaneEl);
+    for (vendor in vendors){
+    	if (humaneEl.style[vendor + 'TransitionProperty'] !== undefined)
+    	      eventPrefix = vendors[vendor];
+    }
     isSetup = true;
   }
 
@@ -55,7 +68,7 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-    if (animationInProgress) animate(0);
+   if (animationInProgress) animate(0);
   }
 
   function run() {
@@ -92,6 +105,8 @@
     }
     else {
       humaneEl.className = humaneEl.className.replace(" humane-animate","");
+      if(after!=null) 
+    	  on(humaneEl,normalizeEvent('TransitionEnd'),after);
       end();
     }
   }
@@ -108,6 +123,7 @@
     if (useFilter) {
       return function(opacity){
         humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100;
+        
       }
     }
     else {
@@ -151,6 +167,8 @@
         else {
           humaneEl.className = humaneEl.className.replace(" humane-js-animate","");
           clearInterval(interval);
+          if(after!=null)
+        	  after();
           end();
         }
       }, 100 / 20);
@@ -158,8 +176,9 @@
   }
 
   function notifier (type) {
-    return function (message) {
+    return function (message,callback) {
       queue.push( [type, message] );
+      after = callback || null;
       if(isSetup) run();
     }
   }
@@ -175,4 +194,4 @@
   win.humane.waitForMove = false;
   win.humane.forceNew = false;
 
-}( window, document ));
+}( window, document));
