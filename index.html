@@ -82,7 +82,11 @@ humane.log("Welcome Back");</pre>
       <a href='javascript:humane.success(["List","of","Items"])'>
          <pre>humane.success(["List","of","Items"]);</pre>
       </a>
-
+      <a href='javascript:humane("The background color will change when finished",function(){document.body.style.backgroundColor="#6699FF"})'>
+         <pre>humane("Second parameter takes a callback that's fired when finished", function(){
+   document.body.style.backgroundColor="#6699FF";
+});</pre>
+      </a>
       <h3>Options</h3>
       <pre>humane.timeout = (number of milliseconds);</pre>
       <blockquote>
