@@ -11,8 +11,8 @@
  * See more usage examples at: http://wavded.github.com/humane-js/
  */
 ;(function (win,doc) {
-  var on, 
-  	  off, 
+  var on,
+  	  off,
   	  isArray,
   	  eventing = false,
   	  animationInProgress = false,
@@ -24,7 +24,7 @@
   	  isSetup = false,
   	  queue = [],
   	  after = null;
-  	  
+
   if ('addEventListener' in win) {
     on  = function (obj,type,fn) { obj.addEventListener(type,fn,false)    };
     off = function (obj,type,fn) { obj.removeEventListener(type,fn,false) };
@@ -34,11 +34,11 @@
     off = function (obj,type,fn) { obj.detachEvent('on'+type,fn) };
   }
   isArray = Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' };
-  
-  function normalizeEvent(name) { 
+
+  function normalizeEvent(name) {
 	  return eventPrefix ? eventPrefix + name : name.toLowerCase();
   }
-  
+
   on (win,'load',function () {
     var transitionSupported = ( function (style) {
       var prefixes = ['MozT','WebkitT','OT','msT','KhtmlT','t'];
@@ -70,7 +70,8 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-   if (animationInProgress) animate(0);
+    if (humane.closeOnClick) { off (humaneEl,'click',remove); off (humaneEl, 'touchstart', remove); }
+    if (animationInProgress) animate(0);
   }
 
   function run() {
@@ -93,11 +94,13 @@
       }
     }, win.humane.timeout);
 
+    if (humane.closeOnClick) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
+
     var next = queue.shift(),
     	type = next[0],
     	content = next[1],
     	callback = next[2];
-    
+
     after = callback;
     if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
 
@@ -111,7 +114,7 @@
     }
     else {
       humaneEl.className = humaneEl.className.replace(" humane-animate","");
-      if(after!=null) 
+      if(after!=null)
     	  on(humaneEl,normalizeEvent('TransitionEnd'),after);
       end();
     }
@@ -129,7 +132,7 @@
     if (useFilter) {
       return function(opacity){
         humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100;
-        
+
       }
     }
     else {
@@ -198,5 +201,6 @@
   win.humane.timeout = 2500;
   win.humane.waitForMove = false;
   win.humane.forceNew = false;
+  win.humane.closeOnClick = false;
 
 }( window, document));

@@ -100,7 +100,7 @@ humane.log("Welcome Back");</pre>
       </blockquote>
       <pre>humane.waitForMove = (true|false);</pre>
       <blockquote>
-         <p>Wait for mouse, or keyboard action to be taken before clearing message (after timeout)</p>
+         <p>Wait for mouse, keyboard, or touch action to be taken before clearing message (after timeout)</p>
          <p>
             Try It:
             <input type='radio' name='waitformove' onclick='humane.waitForMove = true'> true
@@ -114,6 +114,15 @@ humane.log("Welcome Back");</pre>
             Try It:
             <input type='radio' name='forceNew' onclick='humane.forceNew = true'> true
             <input type='radio' name='forceNew' onclick='humane.forceNew = false' checked> false <small>(default)</small>
+         </p>
+      </blockquote>
+      <pre>humane.clickToClose = (true|false);</pre>
+      <blockquote>
+         <p>Click or touch the notification to close</p>
+         <p>
+            Try It:
+            <input type='radio' name='clickToClose' onclick='humane.clickToClose = true'> true
+            <input type='radio' name='clickToClose' onclick='humane.clickToClose = false' checked> false <small>(default)</small>
          </p>
       </blockquote>
 
