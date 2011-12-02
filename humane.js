@@ -70,7 +70,7 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-    if (humane.closeOnClick) { off (humaneEl,'click',remove); off (humaneEl, 'touchstart', remove); }
+    if (humane.clickToClose) { off (humaneEl,'click',remove); off (humaneEl, 'touchstart', remove); }
     if (animationInProgress) animate(0);
   }
 
@@ -94,7 +94,7 @@
       }
     }, win.humane.timeout);
 
-    if (humane.closeOnClick) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
+    if (humane.clickToClose) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
 
     var next = queue.shift(),
     	type = next[0],
@@ -201,6 +201,6 @@
   win.humane.timeout = 2500;
   win.humane.waitForMove = false;
   win.humane.forceNew = false;
-  win.humane.closeOnClick = false;
+  win.humane.clickToClose = false;
 
 }( window, document));
