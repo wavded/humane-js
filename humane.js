@@ -74,6 +74,7 @@
   function run() {
     if (animationInProgress && !win.humane.forceNew) return;
     if (!queue.length) { remove(); return; }
+    after = null;
     animationInProgress = true;
     if (timeout) {
       clearTimeout(timeout);
@@ -90,9 +91,12 @@
       }
     }, win.humane.timeout);
 
-    var next = queue.shift();
-    var type = next[0];
-    var content = next[1];
+    var next = queue.shift(),
+    	type = next[0],
+    	content = next[1],
+    	callback = next[2];
+    
+    after = callback;
     if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
 
     humaneEl.innerHTML = content;
@@ -177,8 +181,7 @@
 
   function notifier (type) {
     return function (message,callback) {
-      queue.push( [type, message] );
-      after = callback || null;
+      queue.push( [type, message,callback] );
       if(isSetup) run();
     }
   }
