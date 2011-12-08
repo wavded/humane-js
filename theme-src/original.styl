@@ -1,0 +1,46 @@
+@import 'nib'
+vendor-prefixes = moz webkit ms o official
+
+html, body { height: 100% }
+.humane
+  position   : fixed
+  transition : all .2s ease-out
+  z-index    : -1
+.humane.humane-animate, .humane.humane-js-animate
+  z-index    : 100000
+
+.humane
+  font-family       : Ubuntu, Verdana, sans-serif
+  line-height       : 40px
+  font-size         : 25px
+  top               : 25%
+  left              : 25%
+  opacity           : 0
+  width             : 50%
+  min-height        : 40px
+  padding           : 10px
+  text-align        : center
+  background-color  : #000
+  color             : #fff
+  border-radius     : 15px
+  p, ul
+    margin: 0
+    padding: 0
+  ul
+    list-style: none
+  &.humane-info
+    background-color : #030
+  &.humane-success
+    background-color : #030
+  &.humane-error
+    background-color : #300
+
+.humane.humane-animate
+  opacity: 0.8
+  &:hover
+    opacity: 0.6
+
+.humane.humane-js-animate
+  opacity: 0.8
+  &:hover
+    opacity: 0.6
