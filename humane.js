@@ -83,16 +83,19 @@
       clearTimeout(timeout);
       timeout = null;
     }
-    timeout = setTimeout(function(){ // allow notification to stay alive for timeout
-      if (!eventing) {
-        on (doc.body,'mousemove',remove);
-        on (doc.body,'click',remove);
-        on (doc.body,'keypress',remove);
-        on (doc.body,'touchstart',remove);
-        eventing = true;
-        if(!win.humane.waitForMove) remove();
-      }
-    }, win.humane.timeout);
+
+    if(win.humane.timeout) {
+       timeout = setTimeout(function(){ // allow notification to stay alive for timeout
+         if (!eventing) {
+           on (doc.body,'mousemove',remove);
+           on (doc.body,'click',remove);
+           on (doc.body,'keypress',remove);
+           on (doc.body,'touchstart',remove);
+           eventing = true;
+           if(!win.humane.waitForMove) remove();
+         }
+       }, win.humane.timeout);
+    }
 
     if (humane.clickToClose) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
 
