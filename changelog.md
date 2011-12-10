@@ -1,8 +1,13 @@
 
+2.2.7 / 2011-12-10 
+==================
+
+  * added; ability to set the timeout to 0 (no timeout)
+
 2.2.6 / 2011-12-08 
 ==================
 
-  * Added 'original' theme
+  * added; 'original' theme
 
 2.2.5 / 2011-12-02 
 ==================
