@@ -70,7 +70,10 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-    if (humane.clickToClose) { off (humaneEl,'click',remove); off (humaneEl, 'touchstart', remove); }
+    if (humane[humane.currentType].clickToClose || humane.clickToClose) {
+      off (humaneEl,'click',remove);
+      off (humaneEl, 'touchstart', remove);
+    }
     if (animationInProgress) animate(0);
   }
 
@@ -84,18 +87,19 @@
       timeout = null;
     }
 
-    if (humane.clickToClose) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
-
     var next = queue.shift(),
-    	type = next[0],
-    	content = next[1],
-    	callback = next[2],
-    	typeTimeout;
-    	
-    if(win.humane.timeout) {
-      if (typeof win.humane.timeout === 'object') {
-        typeTimeout = win.humane.timeout[type] || 2500;
-      }
+      type = next[0],
+      content = next[1],
+      callback = next[2];
+      
+    win.humane.currentType = type;
+
+    if (humane[type].clickToClose || humane.clickToClose) {
+      on (humaneEl,'click',remove);
+      on (humaneEl, 'touchstart', remove);
+    }
+    
+    if(win.humane[type].timeout || win.humane.timeout) {
       timeout = setTimeout(function(){ // allow notification to stay alive for timeout
         if (!eventing) {
           on (doc.body,'mousemove',remove);
@@ -105,7 +109,7 @@
           eventing = true;
           if(!win.humane.waitForMove) remove();
         }
-      }, typeTimeout || win.humane.timeout);
+      }, win.humane[type].timeout || win.humane.timeout);
     }
 
     after = callback;
@@ -199,6 +203,7 @@
   }
 
   win.humane = notifier('log');
+	win.humane.currentType = 'log'; // set default type on load to log
 
   win.humane.log = notifier('log');
   win.humane.error = notifier('error');
@@ -210,4 +215,4 @@
   win.humane.forceNew = false;
   win.humane.clickToClose = false;
 
-}( window, document));
+}(window, document));
