@@ -84,25 +84,29 @@
       timeout = null;
     }
 
-    if(win.humane.timeout) {
-       timeout = setTimeout(function(){ // allow notification to stay alive for timeout
-         if (!eventing) {
-           on (doc.body,'mousemove',remove);
-           on (doc.body,'click',remove);
-           on (doc.body,'keypress',remove);
-           on (doc.body,'touchstart',remove);
-           eventing = true;
-           if(!win.humane.waitForMove) remove();
-         }
-       }, win.humane.timeout);
-    }
-
     if (humane.clickToClose) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
 
     var next = queue.shift(),
     	type = next[0],
     	content = next[1],
-    	callback = next[2];
+    	callback = next[2],
+    	typeTimeout;
+    	
+    if(win.humane.timeout) {
+      if (typeof win.humane.timeout === 'object') {
+        typeTimeout = win.humane.timeout[type] || 2500;
+      }
+      timeout = setTimeout(function(){ // allow notification to stay alive for timeout
+        if (!eventing) {
+          on (doc.body,'mousemove',remove);
+          on (doc.body,'click',remove);
+          on (doc.body,'keypress',remove);
+          on (doc.body,'touchstart',remove);
+          eventing = true;
+          if(!win.humane.waitForMove) remove();
+        }
+      }, typeTimeout || win.humane.timeout);
+    }
 
     after = callback;
     if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
