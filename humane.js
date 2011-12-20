@@ -70,7 +70,7 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-    if (humane[humane.currentType].clickToClose || humane.clickToClose) {
+    if (humane[humane.currentType].clickToClose || (humane[humane.currentType].clickToClose !== false && humane.clickToClose)) {
       off (humaneEl,'click',remove);
       off (humaneEl, 'touchstart', remove);
     }
@@ -94,7 +94,7 @@
       
     win.humane.currentType = type;
 
-    if (humane[type].clickToClose || humane.clickToClose) {
+    if (humane[type].clickToClose || (humane[type].clickToClose !== false && humane.clickToClose)) {
       on (humaneEl,'click',remove);
       on (humaneEl, 'touchstart', remove);
     }
