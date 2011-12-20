@@ -70,7 +70,10 @@
     off (doc.body,'keypress',remove);
     off (doc.body,'touchstart',remove);
     eventing = false;
-    if (humane.clickToClose) { off (humaneEl,'click',remove); off (humaneEl, 'touchstart', remove); }
+    if (humane[humane.currentType].clickToClose || (humane[humane.currentType].clickToClose !== false && humane.clickToClose)) {
+      off (humaneEl,'click',remove);
+      off (humaneEl, 'touchstart', remove);
+    }
     if (animationInProgress) animate(0);
   }
 
@@ -84,25 +87,30 @@
       timeout = null;
     }
 
-    if(win.humane.timeout) {
-       timeout = setTimeout(function(){ // allow notification to stay alive for timeout
-         if (!eventing) {
-           on (doc.body,'mousemove',remove);
-           on (doc.body,'click',remove);
-           on (doc.body,'keypress',remove);
-           on (doc.body,'touchstart',remove);
-           eventing = true;
-           if(!win.humane.waitForMove) remove();
-         }
-       }, win.humane.timeout);
-    }
-
-    if (humane.clickToClose) { on (humaneEl,'click',remove); on (humaneEl, 'touchstart', remove); }
-
     var next = queue.shift(),
-    	type = next[0],
-    	content = next[1],
-    	callback = next[2];
+      type = next[0],
+      content = next[1],
+      callback = next[2];
+      
+    win.humane.currentType = type;
+
+    if (humane[type].clickToClose || (humane[type].clickToClose !== false && humane.clickToClose)) {
+      on (humaneEl,'click',remove);
+      on (humaneEl, 'touchstart', remove);
+    }
+    
+    if(win.humane[type].timeout || win.humane.timeout) {
+      timeout = setTimeout(function(){ // allow notification to stay alive for timeout
+        if (!eventing) {
+          on (doc.body,'mousemove',remove);
+          on (doc.body,'click',remove);
+          on (doc.body,'keypress',remove);
+          on (doc.body,'touchstart',remove);
+          eventing = true;
+          if(!win.humane.waitForMove) remove();
+        }
+      }, win.humane[type].timeout || win.humane.timeout);
+    }
 
     after = callback;
     if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
@@ -195,6 +203,7 @@
   }
 
   win.humane = notifier('log');
+	win.humane.currentType = 'log'; // set default type on load to log
 
   win.humane.log = notifier('log');
   win.humane.error = notifier('error');
@@ -206,4 +215,4 @@
   win.humane.forceNew = false;
   win.humane.clickToClose = false;
 
-}( window, document));
+}(window, document));
