@@ -91,15 +91,15 @@
       type = next[0],
       content = next[1],
       callback = next[2];
-      
+
     win.humane.currentType = type;
 
     if (humane[type].clickToClose || (humane[type].clickToClose !== false && humane.clickToClose)) {
       on (humaneEl,'click',remove);
       on (humaneEl, 'touchstart', remove);
     }
-    
-    if(win.humane[type].timeout || win.humane.timeout) {
+
+    if (win.humane[type].timeout || (win.humane[type].timeout == null && win.humane.timeout)) {
       timeout = setTimeout(function(){ // allow notification to stay alive for timeout
         if (!eventing) {
           on (doc.body,'mousemove',remove);
