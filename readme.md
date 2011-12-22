@@ -57,6 +57,7 @@ Many thanks to the JS/Browser wizards that helped make this better, community ro
 - @bga_ (Alexander)
 - @joseanpg (Jose)
 - @OiNutter (Will McKenzie)
+- @ianmassey (Ian Massey)
 
 ## License
 

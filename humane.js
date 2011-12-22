@@ -2,10 +2,6 @@
  * HumaneJS
  * Humanized Messages for Notifications
  * @author Marc Harter (@wavded)
- * @contributers
- *   Alexander (@bga_)
- *   Jose (@joseanpg)
- *   Will McKenzie (@OiNutter)
  * @example
  *   humane('hello world');
  * See more usage examples at: http://wavded.github.com/humane-js/
