@@ -1,4 +1,4 @@
-# Humane JS
+# humane.js
 This project was heavily inspired by [humanmsg](http://code.google.com/p/humanmsg/) project for jQuery.  I really
 liked the project but I wanted to remove the jQuery dependency, add support for CSS transitions, and have more 
 control over the timing.
