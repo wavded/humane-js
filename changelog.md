@@ -1,4 +1,12 @@
 
+2.5.0 / 2011-12-23 
+==================
+
+  * removed; forceNew (breaking change), hacky solution that didn't work very well
+  * updated; code cleanup and refactor
+  * updated; using transitionend for end events instead of timeout
+  * added; waitForMove by type
+
 2.2.8 / 2011-12-22 
 ==================
 
