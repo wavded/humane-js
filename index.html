@@ -89,7 +89,7 @@ humane.log("Welcome Back");</pre>
 });</pre>
       </a>
       <h3>Options</h3>
-      <pre>humane.timeout = (number of milliseconds); // can specify this by type as well e.g. humane.error.timeout</pre>
+      <pre>humane.timeout = (number of milliseconds);</pre>
       <blockquote>
          <p>Sets the delay before a message fades out.</p>
          <p>
@@ -109,16 +109,7 @@ humane.log("Welcome Back");</pre>
             <input type='radio' name='waitformove' onclick='humane.waitForMove = false' checked> false <small>(default)</small>
          </p>
       </blockquote>
-      <pre>humane.forceNew = (true|false);</pre>
-      <blockquote>
-         <p>Force new messages to appear immediately</p>
-         <p>
-            Try It:
-            <input type='radio' name='forceNew' onclick='humane.forceNew = true'> true
-            <input type='radio' name='forceNew' onclick='humane.forceNew = false' checked> false <small>(default)</small>
-         </p>
-      </blockquote>
-      <pre>humane.clickToClose = (true|false); // can specify this by type as well e.g. humane.error.clickToClose</pre>
+      <pre>humane.clickToClose = (true|false);</pre>
       <blockquote>
          <p>Click or touch the notification to close</p>
          <p>
@@ -127,6 +118,24 @@ humane.log("Welcome Back");</pre>
             <input type='radio' name='clickToClose' onclick='humane.clickToClose = false' checked> false <small>(default)</small>
          </p>
       </blockquote>
+
+      <h3>Customizing Options Per Type</h3>
+      <p>All the options are also customizable by type.  For example, say you wanted errors to always stay up until the user moved the mouse.</p>
+      <pre>
+humane.error.waitForMove = true;
+humane.error('Stays up a until mouse move');
+humane.log('Gets removed after timeout');</pre>
+      <p>Or say you want success messages to remain up forever unless a user clicks them:</p>
+      <pre>
+humane.success.timeout = 0;
+humane.success.clickToClose = true;
+humane.success('Will stay up forever until click');</pre>
+      <p>Or you want all messages to have 3s timeout (3000) but 'info' messages to have shorter timeout of 1s (1000)</p>
+      <pre>
+humane.timeout = 3000;
+humane.info.timeout = 1000;
+humane.log('I'm up for 3 seconds');
+humane.info('I'm up for 1 second');</pre>
 
       <h3>Browser Support</h3>
       <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
