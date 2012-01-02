@@ -1,4 +1,10 @@
 
+2.6.0 / 2012-01-02 
+==================
+
+  * added; event support
+  * fixed; bug w/ transEnd firing multiple times
+
 2.5.0 / 2011-12-23 
 ==================
 
