@@ -4,7 +4,7 @@ liked the project but I wanted to remove the jQuery dependency, add support for 
 control over the timing.
 
 ## About
-Humane JS tries to be as unobtrusive as possible to the user experience while providing helpful information that is
+humane.js tries to be as unobtrusive as possible to the user experience while providing helpful information that is
 clear and grabs the users attention.  It is framework independent.  Customizable.
 
 ## Setup
@@ -37,7 +37,7 @@ make watch
 
 ## Browser Support
 
-Humane has been well tested for the following browsers.
+humane.js has been well tested for the following browsers.
 
   - Internet Explorer 7+
   - Firefox 3+

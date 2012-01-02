@@ -8,8 +8,9 @@
  */
 ;(function (win,doc) {
 
-   var on, off, isArray,
+   var humane, on, off, isArray,
       eventing = false,
+      useTransitions = false,
       animationInProgress = false,
       humaneEl = null,
       timeout = null,
@@ -17,6 +18,9 @@
       vendors = { Webkit: 'webkit', Moz: '', O: 'o', ms: 'MS' },
       eventPrefix = "",
       isSetup = false,
+      currentMessage = {},
+      noop = function(){},
+      events = { 'add': noop, 'show': noop, 'hide': noop },
       queue = [];
 
    if ('addEventListener' in win) {
@@ -38,10 +42,9 @@
       return win.humane[type][config] !== void 0 ? win.humane[type][config] : win.humane[config];
    }
 
-   on (win,'load', setup)
+   on (win,'load', setup);
 
    function setup() {
-      var useTransitions = false;
       humaneEl = doc.createElement('div');
       humaneEl.id = 'humane';
       humaneEl.className = 'humane';
@@ -68,18 +71,17 @@
          timeout = null;
       }
 
-      var next = queue.shift(),
-         type = next[0],
-         content = next[1];
-
-      humane._lastCallback = next[2];
+      var next = queue.shift();
+      currentMessage = { type: next[0], message: next[1], callback: next[2] };
+      var content = currentMessage.message,
+         type = currentMessage.type;
 
       if ( getConfig(type, 'clickToClose') === true ) {
          on (humaneEl, 'click', remove);
          on (humaneEl, 'touchstart', remove);
       }
 
-      timeoutInMillis = getConfig(type, 'timeout');
+      var timeoutInMillis = getConfig(type, 'timeout');
 
       if (timeoutInMillis > 0) {
          timeout = setTimeout(function(){ // allow notification to stay alive for timeout
@@ -89,12 +91,12 @@
                on (doc.body, 'keypress', remove);
                on (doc.body, 'touchstart', remove);
                eventing = true;
-               console.log( getConfig(type, 'waitForMove') );
                if( getConfig(type, 'waitForMove') !== true ) remove();
             }
          }, timeoutInMillis);
       }
 
+      events['show'](type,content,'show');
       if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
 
       humaneEl.innerHTML = content;
@@ -104,7 +106,6 @@
    function animate (level,type) {
       if (level === 1) {
          humaneEl.className = "humane humane-" + type + " humane-animate";
-         off ( humaneEl, normalizeEvent('TransitionEnd'), end );
       }
       else {
          humaneEl.className = humaneEl.className.replace(" humane-animate","");
@@ -126,8 +127,11 @@
 
 
    function end() {
+      // turn off animation event if supported, a little trigger happy
+      if(useTransitions) off ( humaneEl, normalizeEvent('TransitionEnd'), end );
       animationInProgress = false;
-      if(humane._lastCallback) humane._lastCallback()
+      if(currentMessage.callback) currentMessage.callback();
+      events['hide'](currentMessage.type, currentMessage.message,'hide');
       run();
    }
 
@@ -175,19 +179,24 @@
    function notifier (type) {
       return function (message, cb) {
          queue.push( [type, message, cb] );
+         events['add'](type,message,'add');
          if (isSetup) run();
       }
    }
 
-   win.humane = notifier('log');
-   win.humane.log = notifier('log');
-   win.humane.error = notifier('error');
-   win.humane.info = notifier('info');
-   win.humane.success = notifier('success');
+   // types
+   humane = notifier('log');
+   humane.log = notifier('log');
+   humane.error = notifier('error');
+   humane.info = notifier('info');
+   humane.success = notifier('success');
 
    // options
-   win.humane.timeout = 2500;
-   win.humane.waitForMove = false;
-   win.humane.clickToClose = false;
+   humane.timeout = 2500;
+   humane.waitForMove = false;
+   humane.clickToClose = false;
 
+   // events
+   humane.on = function(type, handler){ events[type] = handler; };
+   win.humane = humane;
 })( window, document );
