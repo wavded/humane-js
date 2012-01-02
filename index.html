@@ -137,6 +137,21 @@ humane.info.timeout = 1000;
 humane.log('I'm up for 3 seconds');
 humane.info('I'm up for 1 second');</pre>
 
+      <h3>Events</h3>
+      <p>humane.js provides some events more intended for plumbing purposes, say you wanted to implement stacking or logging:</p>
+      <pre>humane.on(<b>'add'</b>, function(type, message) { ... });</pre>
+      <blockquote>
+         <p>Fires when a new message is added to the queue</p>
+      </blockquote>
+      <pre>humane.on(<b>'show'</b>, function(type, message) { ... });</pre>
+      <blockquote>
+         <p>Fires when a message is about to be shown</p>
+      </blockquote>
+      <pre>humane.on(<b>'hide'</b>, function(type, message) { ... });</pre>
+      <blockquote>
+         <p>Fires when a message is hidden and removed</p>
+      </blockquote>
+
       <h3>Browser Support</h3>
       <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
       <ul>
