@@ -147,6 +147,7 @@
          opacity = 0;
          humaneEl.className = "humane humane-js-animate humane-" + type;
          if (useFilter) setOpacity(0); // reset value so hover states work
+         humaneEl.style.zIndex = 1000000;
 
          interval = setInterval(function(){
             if (opacity < 1) {
@@ -169,6 +170,7 @@
             }
             else {
                humaneEl.className = humaneEl.className.replace(" humane-js-animate","");
+               humaneEl.style.zIndex = -1;
                clearInterval(interval);
                end();
             }
