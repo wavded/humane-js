@@ -192,6 +192,7 @@
    humane.error = notifier('error');
    humane.info = notifier('info');
    humane.success = notifier('success');
+   humane.remove = remove;
 
    // options
    humane.timeout = 2500;
