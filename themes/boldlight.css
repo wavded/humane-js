@@ -9,10 +9,6 @@ body {
   -ms-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  z-index: -1;
-}
-.humane.humane-animate,
-.humane.humane-js-animate {
   z-index: 100000;
 }
 .humane {
