@@ -35,18 +35,15 @@ With Stylus installed you can watch for changes and compile into CSS by running:
 make watch
 ```
 
-## Browser Support
+## Desktop and Mobile Browser Support
 
-humane.js has been well tested for the following browsers.
+humane.js has been tested for the following browsers.
 
   - Internet Explorer 7+
   - Firefox 3+
   - Chrome 9+
   - Safari 3+
   - Opera 10+
-
-Expiremental support for mobile:
-
   - iOS 4+
   - Android 2+
 
