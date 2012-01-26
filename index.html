@@ -129,7 +129,8 @@ humane.log('Gets removed after timeout');</pre>
       <pre>
 humane.success.timeout = 0;
 humane.success.clickToClose = true;
-humane.success('Will stay up forever until click');</pre>
+humane.success('Will stay up forever until click or humane.remove()');</pre>
+humane.remove(); // force remove
       <p>Or you want all messages to have 3s timeout (3000) but 'info' messages to have shorter timeout of 1s (1000)</p>
       <pre>
 humane.timeout = 3000;
