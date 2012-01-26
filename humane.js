@@ -62,7 +62,7 @@
 
    function run() {
       if (animationInProgress) return;
-      if (!queue.length) { remove(); return; }
+      if (!queue.length) return;
 
       after = null;
       animationInProgress = true;
@@ -100,7 +100,8 @@
       if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
 
       humaneEl.innerHTML = content;
-      animate(1,type);
+      humaneEl.style.display = 'block';
+      setTimeout(function(){ animate(1,type); },50) // prevent queueing display in animation
    }
 
    function animate (level,type) {
@@ -128,10 +129,11 @@
 
    function end() {
       // turn off animation event if supported, a little trigger happy
-      if(useTransitions) off ( humaneEl, normalizeEvent('TransitionEnd'), end );
+      if (useTransitions) off ( humaneEl, normalizeEvent('TransitionEnd'), end );
       animationInProgress = false;
-      if(currentMessage.callback) currentMessage.callback();
+      if (currentMessage.callback) currentMessage.callback();
       events['hide'](currentMessage.type, currentMessage.message,'hide');
+      humaneEl.style.display = 'none';
       run();
    }
 
