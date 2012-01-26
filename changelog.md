@@ -1,4 +1,10 @@
 
+2.7.1 / 2012-01-26 
+==================
+
+  * fixed; display:none humane when not in use Fixes #18
+  * added; exposed remove()
+
 2.7.0 / 2012-01-12 
 ==================
 
