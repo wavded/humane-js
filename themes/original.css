@@ -10,6 +10,7 @@ body {
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   z-index: 100000;
+  display: none;
 }
 .humane {
   font-family: Ubuntu, Verdana, sans-serif;
