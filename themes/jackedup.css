@@ -10,6 +10,7 @@ body {
   -o-transition: all 0.6s ease-in-out;
   transition: all 0.6s ease-in-out;
   z-index: 100000;
+  display: none;
 }
 .humane {
   font-family: Helvetica Neue, Helvetica, san-serif;

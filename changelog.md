@@ -1,4 +1,15 @@
 
+2.8.0 / 2012-02-21 
+==================
+
+  * added; custom notifier support GH #19
+
+2.7.2 / 2012-02-10 
+==================
+
+  * fixed; IE 7/8 display issue
+  * updated; docs page
+
 2.7.1 / 2012-01-26 
 ==================
 

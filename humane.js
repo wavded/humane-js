@@ -39,7 +39,7 @@
    }
 
    function getConfig(type, config) {
-      return win.humane[type][config] !== void 0 ? win.humane[type][config] : win.humane[config];
+      return currentMessage.instance[config] !== void 0 ? currentMessage.instance[config] : win.humane[config];
    }
 
    on (win,'load', setup);
@@ -72,7 +72,7 @@
       }
 
       var next = queue.shift();
-      currentMessage = { type: next[0], message: next[1], callback: next[2] };
+      currentMessage = { type: next[0], message: next[1], instance: next[2], callback: next[3] };
       var content = currentMessage.message,
          type = currentMessage.type;
 
@@ -141,7 +141,7 @@
       ? function (opacity) { humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100; }
       : function (opacity) { humaneEl.style.opacity = String(opacity); }
 
-   function jsAnimateOpacity (level,type) {
+   function jsAnimateOpacity (level, type) {
       var interval;
       var opacity;
 
@@ -181,9 +181,9 @@
    }
 
    function notifier (type) {
-      return function (message, cb) {
-         queue.push( [type, message, cb] );
-         events['add'](type,message,'add');
+      return function instance (message, cb) {
+         queue.push( [type, message, instance, cb] );
+         events['add'](type, message, 'add');
          if (isSetup) run();
       }
    }
@@ -195,6 +195,14 @@
    humane.info = notifier('info');
    humane.success = notifier('success');
    humane.remove = remove;
+
+   humane.create = function (options) {
+      var type = notifier(options.type || 'log');
+      type.timeout = options.timeout || 2500;
+      type.waitForMove = options.waitForMove || false;
+      type.clickToClose = options.clickToClose || false;
+      return type;
+   }
 
    // options
    humane.timeout = 2500;
