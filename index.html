@@ -138,6 +138,12 @@ humane.info.timeout = 1000;
 humane.log('I'm up for 3 seconds');
 humane.info('I'm up for 1 second');</pre>
 
+      <h3>Creating a Custom Notifier</h3>
+      <p>You can create your own custom notifier that takes a type plus any of the options listed above (w/ those defaults unless overridden)</p>
+      <pre>
+var error = humane.create({ type: 'error', waitForMove: true });
+error('Yikes');</pre>
+
       <h3>Events</h3>
       <p>humane.js provides some events more intended for plumbing purposes, say you wanted to implement stacking or logging:</p>
       <pre>humane.on(<b>'add'</b>, function(type, message) { ... });</pre>
