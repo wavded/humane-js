@@ -104,17 +104,17 @@
       setTimeout(function(){ animate(1,type); },50) // prevent queueing display in animation
    }
 
-   function animate (level,type) {
+   function animate (level,type,cb) {
       if (level === 1) {
          humaneEl.className = "humane humane-" + type + " humane-animate";
       }
       else {
          humaneEl.className = humaneEl.className.replace(" humane-animate","");
-         on ( humaneEl, normalizeEvent('TransitionEnd'), end );
+         on ( humaneEl, normalizeEvent('TransitionEnd'), function (){ end(); cb && cb(); });
       }
    }
 
-   function remove() {
+   function remove (cb) {
       off (doc.body, 'mousemove', remove);
       off (doc.body, 'click', remove);
       off (doc.body, 'keypress', remove);
@@ -123,7 +123,8 @@
       off (humaneEl, 'click', remove);
       off (humaneEl, 'touchstart', remove);
       eventing = false;
-      if (animationInProgress) animate(0);
+      if (animationInProgress) animate(0, null, cb);
+      else cb()
    }
 
 
@@ -141,7 +142,7 @@
       ? function (opacity) { humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100; }
       : function (opacity) { humaneEl.style.opacity = String(opacity); }
 
-   function jsAnimateOpacity (level, type) {
+   function jsAnimateOpacity (level, type, cb) {
       var interval;
       var opacity;
 
@@ -175,6 +176,7 @@
                humaneEl.style.zIndex = -1;
                clearInterval(interval);
                end();
+               cb && cb();
             }
          }, 100 / 20);
       }

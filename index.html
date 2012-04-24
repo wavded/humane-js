@@ -118,6 +118,14 @@ humane.log("Welcome Back");</pre>
             <input type='radio' name='clickToClose' onclick='humane.clickToClose = false' checked> false <small>(default)</small>
          </p>
       </blockquote>
+      <pre>humane.remove(callback);</pre>
+      <blockquote>
+         <p>Force remove current notification, takes an optional callback fired when finished</p>
+         <p>
+            Try It:
+            <a href='javascript:humane.remove(function(){ alert("removed") })'> humane.remove(function(){ alert('removed') }) </a>
+         </p>
+      </blockquote>
 
       <h3>Customizing Options Per Type</h3>
       <p>All the options are also customizable by type.  For example, say you wanted errors to always stay up until the user moved the mouse.</p>
@@ -130,7 +138,7 @@ humane.log('Gets removed after timeout');</pre>
 humane.success.timeout = 0;
 humane.success.clickToClose = true;
 humane.success('Will stay up forever until click or humane.remove()');
-humane.remove(); // force remove</pre>
+humane.remove(function() { // removed }); // force remove</pre>
       <p>Or you want all messages to have 3s timeout (3000) but 'info' messages to have shorter timeout of 1s (1000)</p>
       <pre>
 humane.timeout = 3000;
