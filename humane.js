@@ -124,7 +124,7 @@
       off (humaneEl, 'touchstart', remove);
       eventing = false;
       if (animationInProgress) animate(0, null, cb);
-      else cb()
+      else if (cb) cb()
    }
 
 
