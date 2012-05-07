@@ -2,7 +2,8 @@ html,
 body {
   height: 100%;
 }
-.humane {
+.humane,
+.humane-original {
   position: fixed;
   -moz-transition: all 0.2s ease-out;
   -webkit-transition: all 0.2s ease-out;
@@ -10,16 +11,16 @@ body {
   -o-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
   z-index: 100000;
-  display: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
-.humane {
+.humane,
+.humane-original {
   font-family: Ubuntu, Verdana, sans-serif;
   line-height: 40px;
   font-size: 25px;
   top: 25%;
   left: 25%;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   width: 50%;
   min-height: 40px;
   padding: 10px;
@@ -28,40 +29,45 @@ body {
   color: #fff;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
-  -ms-border-radius: 15px;
-  -o-border-radius: 15px;
   border-radius: 15px;
 }
 .humane p,
-.humane ul {
+.humane-original p,
+.humane ul,
+.humane-original ul {
   margin: 0;
   padding: 0;
 }
-.humane ul {
+.humane ul,
+.humane-original ul {
   list-style: none;
 }
-.humane.humane-info {
+.humane.humane-original-info,
+.humane-original.humane-original-info {
   background-color: #030;
 }
-.humane.humane-success {
+.humane.humane-original-success,
+.humane-original.humane-original-success {
   background-color: #030;
 }
-.humane.humane-error {
+.humane.humane-original-error,
+.humane-original.humane-original-error {
   background-color: #300;
 }
-.humane.humane-animate {
+.humane.humane-animate,
+.humane-original.humane-original-animate {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
 }
-.humane.humane-animate:hover {
+.humane.humane-animate:hover,
+.humane-original.humane-original-animate:hover {
   opacity: 0.6;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 }
-.humane.humane-js-animate {
+.humane.humane-js-animate,
+.humane-original.humane-original-js-animate {
   opacity: 0.8;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
 }
-.humane.humane-js-animate:hover {
+.humane.humane-js-animate:hover,
+.humane-original.humane-original-js-animate:hover {
   opacity: 0.6;
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
 }

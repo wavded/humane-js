@@ -1,14 +1,17 @@
 @import 'nib'
 vendor-prefixes = moz webkit ms o official
+support-for-ie = false
 
 html, body { height: 100% }
 .humane
+.humane-libnotify
   position   : fixed
   transition : all .3s ease-out
   z-index    : 100000
-  display    : none
+  filter     : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=100)")
 
 .humane
+.humane-libnotify
   font-family       : Ubuntu, Arial, sans-serif
   text-align        : center
   font-size         : 15px
@@ -29,27 +32,30 @@ html, body { height: 100% }
     padding: 0
   ul
     list-style: none
-  &.humane-info
+  &.humane-libnotify-info
     background-image  : linear-gradient-image(80px, rgba(0,0,50,0.9), rgba(0,0,100,0.9))
     background        : linear-gradient(top, rgba(0,0,50,0.9), rgba(0,0,100,0.9)) no-repeat
     *background-color : #030
-  &.humane-success
+  &.humane-libnotify-success
     background-image  : linear-gradient-image(80px, rgba(0,50,0,0.9), rgba(0,100,0,0.9))
     background        : linear-gradient(top, rgba(0,50,0,0.9), rgba(0,100,0,0.9)) no-repeat
     *background-color  : #030
-  &.humane-error
+  &.humane-libnotify-error
     background-image  : linear-gradient-image(200px, rgba(50,0,0,0.9), rgba(100,0,0,0.9))
     background        : linear-gradient(top, rgba(50,0,0,0.9), rgba(100,0,0,0.9)) no-repeat
     *background-color  : #300
 
 .humane.humane-animate
+.humane-libnotify.humane-libnotify-animate
   opacity           : 1
   transform         : translateY(0)
   &:hover
     opacity         : 0.2
 
-.humane.humane-js-animate
+.humane.humane-animate
+.humane-libnotify.humane-libnotify-js-animate
   opacity           : 1
   transform         : translateY(0)
   &:hover
     opacity         : 0.2
+    filter          : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=20)")
