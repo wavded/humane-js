@@ -1,217 +1,205 @@
-/**
- * humane.js
- * Humanized Messages for Notifications
- * @author Marc Harter (@wavded)
- * @example
- *   humane('hello world');
- * See more usage examples at: http://wavded.github.com/humane-js/
- */
-;(function (win,doc) {
+;!function (win) {
+   var doc = document
 
-   var humane, on, off, isArray,
-      eventing = false,
-      useTransitions = false,
-      animationInProgress = false,
-      humaneEl = null,
-      timeout = null,
-      useFilter = /msie [678]/i.test(navigator.userAgent), // sniff, sniff
-      vendors = { Webkit: 'webkit', Moz: '', O: 'o', ms: 'MS' },
-      eventPrefix = "",
-      isSetup = false,
-      currentMessage = {},
-      noop = function(){},
-      events = { 'add': noop, 'show': noop, 'hide': noop },
-      queue = [];
+   var ENV = {
+      on: function (el, type, cb) {
+         'addEventListener' in win ? el.addEventListener(type,cb,false) : el.attachEvent('on'+type,cb)
+      },
+      off: function (el, type, cb) {
+         'removeEventListener' in win ? el.removeEventListener(type,cb,false) : el.detachEvent('on'+type,cb)
+      },
+      bind: function (fn, ctx) {
+         return function () { fn.apply(ctx,arguments) }
+      },
+      isArray: Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' },
+      domLoaded: false,
+      config: function (preferred, fallback) {
+         return preferred != null ? preferred : fallback
+      },
+      transSupport: false,
+      useFilter: /msie [678]/i.test(navigator.userAgent), // sniff, sniff
+      _checkTransition: function () {
+         var el = doc.createElement('div')
+         var vendors = { webkit: 'webkit', Moz: '', O: 'o', ms: 'MS' }
 
-   if ('addEventListener' in win) {
-      on  = function (obj,type,fn) { obj.addEventListener(type,fn,false)    };
-      off = function (obj,type,fn) { obj.removeEventListener(type,fn,false) };
+         for (var vendor in vendors)
+            if (vendor + 'Transition' in el.style) {
+               this.vendorPrefix = vendors[vendor]
+               this.transSupport = true
+            }
+      }
    }
-   else {
-      on  = function (obj,type,fn) { obj.attachEvent('on'+type,fn) };
-      off = function (obj,type,fn) { obj.detachEvent('on'+type,fn) };
+   ENV._checkTransition()
+
+   var Humane = function (o) {
+      o || (o = {})
+      this.queue = []
+      this.baseCls = o.baseCls || 'humane'
+      this.addnCls = o.addnCls || ''
+      this.timeout = o.timeout || 2500
+      this.waitForMove = o.waitForMove || false
+      this.clickToClose = o.clickToClose || false
+      this.forceNew = o.forceNew || false
+
+      if (ENV.domLoaded) this._setupEl()
+      else ENV.on(win,'load',ENV.bind(this._setupEl, this))
    }
 
-   isArray = Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' };
+   Humane.prototype = {
+      constructor: Humane,
+      _setupEl: function () {
+         var el = doc.createElement('div')
+         el.style.display = 'none'
+         doc.body.appendChild(el)
+         this.el = el
+         this.removeEvent = ENV.bind(this.remove,this)
+         this.transEvent = ENV.bind(this._afterAnimation,this)
+         ENV.domLoaded = true
+      },
+      _afterTimeout: function () {
+         if (!ENV.config(this.currentMsg.waitForMove,this.waitForMove)) this.remove()
 
-   function normalizeEvent(name) {
-      return eventPrefix ? eventPrefix + name : name.toLowerCase();
-   }
-
-   function getConfig(type, config) {
-      return currentMessage.instance[config] !== void 0 ? currentMessage.instance[config] : win.humane[config];
-   }
-
-   on (win,'load', setup);
-
-   function setup() {
-      humaneEl = doc.createElement('div');
-      humaneEl.id = 'humane';
-      humaneEl.className = 'humane';
-      doc.body.appendChild(humaneEl);
-      for (vendor in vendors) {
-         if (vendor + 'TransitionProperty' in humaneEl.style) {
-            eventPrefix = vendors[vendor];
-            useTransitions = true;
+         else if (!this.removeEventsSet) {
+            ENV.on(doc.body,'mousemove',this.removeEvent)
+            ENV.on(doc.body,'click',this.removeEvent)
+            ENV.on(doc.body,'keypress',this.removeEvent)
+            ENV.on(doc.body,'touchstart',this.removeEvent)
+            this.removeEventsSet = true
          }
-      }
-      if (!useTransitions) animate = jsAnimateOpacity; // use js animation when no transition support
-      isSetup = true;
-      run();
+      },
+      _run: function () {
+         if (this._animating || !this.queue.length || !this.el) return
+
+         this._animating = true
+         if (this.currentTimer) {
+            clearTimeout(this.currentTimer)
+            this.currentTimer = null
+         }
+
+         var msg = this.queue.shift()
+         var clickToClose = ENV.config(msg.clickToClose,this.clickToClose)
+
+         if (clickToClose) {
+            ENV.on(this.el,'click',this.removeEvent)
+            ENV.on(this.el,'touchstart',this.removeEvent)
+         }
+
+         var timeout = ENV.config(msg.timeout,this.timeout)
+
+         if (timeout > 0)
+            this.currentTimer = setTimeout(ENV.bind(this._afterTimeout,this), timeout)
+
+         // events['show'](type,content,'show')
+         if (ENV.isArray(msg.html)) msg.html = '<ul><li>'+msg.html.join('<li>')+'</ul>'
+
+         this.el.innerHTML = msg.html
+         this.currentMsg = msg
+         this.el.className = this.baseCls
+         if (ENV.transSupport) {
+            this.el.style.display = 'block'
+            setTimeout(ENV.bind(this._showMsg,this),50)
+         } else {
+            this._showMsg()
+         }
+
+      },
+      _setOpacity: function (opacity) {
+         if (ENV.useFilter)
+            this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
+         else
+            this.el.style.opacity = String(opacity)
+      },
+      _showMsg: function () {
+         var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
+         if (ENV.transSupport) {
+            this.el.className = this.baseCls+' '+addnCls+' '+this.baseCls+'-animate'
+         }
+         else {
+            var opacity = 0
+            this.el.className = this.baseCls+' '+addnCls+' '+this.baseCls+'-js-animate'
+            this._setOpacity(0) // reset value so hover states work
+            this.el.style.display = 'block'
+
+            var self = this
+            var interval = setInterval(function(){
+               if (opacity < 1) {
+                  opacity += 0.1
+                  if (opacity > 1) opacity = 1
+                  self._setOpacity(opacity)
+               }
+               else clearInterval(interval)
+            }, 30)
+         }
+      },
+      _hideMsg: function () {
+         var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
+         if (ENV.transSupport) {
+            this.el.className = this.baseCls+' '+addnCls
+            ENV.on(this.el,ENV.vendorPrefix ? ENV.vendorPrefix+'TransitionEnd' : 'transitionend',this.transEvent)
+         }
+         else {
+            var opacity = 1
+            var self = this
+            var interval = setInterval(function(){
+               if(opacity > 0) {
+                  opacity -= 0.1
+                  if (opacity < 0) opacity = 0
+                  self._setOpacity(opacity);
+               }
+               else {
+                  self.el.className = self.baseCls+' '+addnCls
+                  clearInterval(interval)
+                  self._afterAnimation()
+               }
+            }, 30)
+         }
+      },
+      _afterAnimation: function () {
+         if (ENV.transSupport) ENV.off(this.el,ENV.vendorPrefix ? ENV.vendorPrefix+'TransitionEnd' : 'transitionend',this.transEvent)
+
+         if (this.currentMsg.cb) this.currentMsg.cb()
+         this.el.style.display = 'none'
+
+         this._animating = false
+         // events['hide'](currentMessage.type, currentMessage.message,'hide');
+         this._run()
+      },
+      remove: function (e) {
+         var cb = typeof e == 'function' ? e : null
+
+         ENV.off(doc.body,'mousemove',this.removeEvent)
+         ENV.off(doc.body,'click',this.removeEvent)
+         ENV.off(doc.body,'keypress',this.removeEvent)
+         ENV.off(doc.body,'touchstart',this.removeEvent)
+         ENV.off(this.el,'click',this.removeEvent)
+         ENV.off(this.el,'touchstart',this.removeEvent)
+         this.removeEventsSet = false
+
+         if (cb) this.currentMsg.cb = cb
+         if (this._animating) this._hideMsg()
+         else if (cb) cb()
+      },
+      log: function (html, o, cb, defaults) {
+         var msg = defaults || {}
+
+         if (typeof o == 'function') cb = o
+         else if (o)
+            for (var opt in o) msg[opt] = o[opt]
+
+         msg.html = html
+         if (cb) msg.cb = cb
+         this.queue.push(msg)
+         this._run()
+         return this
+      },
+      spawn: function (defaults) {
+         var self = this
+         return function (html, o, cb) {
+            self.log.call(self,html,o,cb,defaults)
+         }
+      },
+      create: function (o) { return new Humane(o) }
    }
 
-   function run() {
-      if (animationInProgress) return;
-      if (!queue.length) return;
-
-      after = null;
-      animationInProgress = true;
-      if (timeout) {
-         clearTimeout(timeout);
-         timeout = null;
-      }
-
-      var next = queue.shift();
-      currentMessage = { type: next[0], message: next[1], instance: next[2], callback: next[3] };
-      var content = currentMessage.message,
-         type = currentMessage.type;
-
-      if ( getConfig(type, 'clickToClose') === true ) {
-         on (humaneEl, 'click', remove);
-         on (humaneEl, 'touchstart', remove);
-      }
-
-      var timeoutInMillis = getConfig(type, 'timeout');
-
-      if (timeoutInMillis > 0) {
-         timeout = setTimeout(function(){ // allow notification to stay alive for timeout
-            if (!eventing) {
-               on (doc.body, 'mousemove', remove);
-               on (doc.body, 'click', remove);
-               on (doc.body, 'keypress', remove);
-               on (doc.body, 'touchstart', remove);
-               eventing = true;
-               if( getConfig(type, 'waitForMove') !== true ) remove();
-            }
-         }, timeoutInMillis);
-      }
-
-      events['show'](type,content,'show');
-      if ( isArray(content) ) content = '<ul><li>' + content.join('<li>') + '</ul>';
-
-      humaneEl.innerHTML = content;
-      humaneEl.style.display = 'block';
-      setTimeout(function(){ animate(1,type); },50) // prevent queueing display in animation
-   }
-
-   function animate (level,type,cb) {
-      if (level === 1) {
-         humaneEl.className = "humane humane-" + type + " humane-animate";
-      }
-      else {
-         humaneEl.className = humaneEl.className.replace(" humane-animate","");
-         on ( humaneEl, normalizeEvent('TransitionEnd'), function (){ end(); cb && cb(); });
-      }
-   }
-
-   function remove (cb) {
-      off (doc.body, 'mousemove', remove);
-      off (doc.body, 'click', remove);
-      off (doc.body, 'keypress', remove);
-      off (doc.body, 'touchstart', remove);
-      // remove click and touchstart in case clickToClose was added
-      off (humaneEl, 'click', remove);
-      off (humaneEl, 'touchstart', remove);
-      eventing = false;
-      if (animationInProgress) animate(0, null, cb);
-      else cb()
-   }
-
-
-   function end() {
-      // turn off animation event if supported, a little trigger happy
-      if (useTransitions) off ( humaneEl, normalizeEvent('TransitionEnd'), end );
-      animationInProgress = false;
-      if (currentMessage.callback) currentMessage.callback();
-      events['hide'](currentMessage.type, currentMessage.message,'hide');
-      humaneEl.style.display = 'none';
-      run();
-   }
-
-   var setOpacity = useFilter
-      ? function (opacity) { humaneEl.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100; }
-      : function (opacity) { humaneEl.style.opacity = String(opacity); }
-
-   function jsAnimateOpacity (level, type, cb) {
-      var interval;
-      var opacity;
-
-      if (level === 1) {
-         opacity = 0;
-         humaneEl.className = "humane humane-js-animate humane-" + type;
-         if (useFilter) setOpacity(0); // reset value so hover states work
-         humaneEl.style.zIndex = 1000000;
-
-         interval = setInterval(function(){
-            if (opacity < 1) {
-               opacity += 0.1;
-               if (opacity > 1) opacity = 1;
-               setOpacity(opacity);
-            }
-            else {
-               clearInterval(interval);
-            }
-         }, 100 / 20);
-      }
-      else {
-         opacity = 1;
-         interval = setInterval(function(){
-            if(opacity > 0) {
-               opacity -= 0.1;
-               if (opacity < 0) opacity = 0;
-               setOpacity(opacity);
-            }
-            else {
-               humaneEl.className = humaneEl.className.replace(" humane-js-animate","");
-               humaneEl.style.zIndex = -1;
-               clearInterval(interval);
-               end();
-               cb && cb();
-            }
-         }, 100 / 20);
-      }
-   }
-
-   function notifier (type) {
-      return function instance (message, cb) {
-         queue.push( [type, message, instance, cb] );
-         events['add'](type, message, 'add');
-         if (isSetup) run();
-      }
-   }
-
-   // types
-   humane = notifier('log');
-   humane.log = notifier('log');
-   humane.error = notifier('error');
-   humane.info = notifier('info');
-   humane.success = notifier('success');
-   humane.remove = remove;
-
-   humane.create = function (options) {
-      var type = notifier(options.type || 'log');
-      type.timeout = options.timeout || 2500;
-      type.waitForMove = options.waitForMove || false;
-      type.clickToClose = options.clickToClose || false;
-      return type;
-   }
-
-   // options
-   humane.timeout = 2500;
-   humane.waitForMove = false;
-   humane.clickToClose = false;
-
-   // events
-   humane.on = function(type, handler){ events[type] = handler; };
-   win.humane = humane;
-})( window, document );
+   win.humane = new Humane()
+}(this);

@@ -1,14 +1,17 @@
 @import 'nib'
 vendor-prefixes = moz webkit ms o official
+support-for-ie = false
 
 html, body { height: 100% }
 .humane
+.humane-jackedup
   position   : fixed
   transition : all .6s ease-in-out
   z-index    : 100000
-  display    : none
+  filter     : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=100)")
 
 .humane
+.humane-jackedup
   font-family      : Helvetica Neue, Helvetica, san-serif
   font-size        : 18px
   letter-spacing   : -1px
@@ -31,33 +34,36 @@ html, body { height: 100% }
     padding: 0
   ul
     list-style: none
-  &.humane-info
+  &.humane-jackedup-info
     background-image  : linear-gradient-image(200px, rgba(100,100,255,1), rgba(100,100,255,0.8))
     background        : linear-gradient(top, rgba(0,0,0,.7), rgba(0,0,0,.85)) no-repeat
     background-color  : #fff
     color             : #fff
     text-shadow       : 0 -1px 1px rgba(0,0,0,.35)
-  &.humane-success
+  &.humane-jackedup-success
     background-image  : linear-gradient-image(200px, rgba(100,255,100,1), rgba(100,255,100,0.8))
     background        : linear-gradient(top, rgba(98,196,98,1), rgba(87,169,87,1)) no-repeat
     background-color  : rgb(100,255,100)
     color             : #fff
     text-shadow       : 0 -1px 1px rgba(0,0,0,.35)
-  &.humane-error
+  &.humane-jackedup-error
     background-image  : linear-gradient-image(200px, rgba(238,95,91,1), rgba(196,60,53,1))
     background        : linear-gradient(top, rgba(238,95,91,1), rgba(196,60,53,1)) no-repeat
     background-color  : rgb(238,95,91)
     color             : #fff
     text-shadow      : 0 -1px 1px rgba(rgba(0,0,0,.35))
 
-.humane.humane-animate
+.humane-animate
+.humane-jackedup.humane-jackedup-animate
   opacity   : 1
   transform : translateY(0)
   &:hover
     opacity : .7
 
-.humane.humane-js-animate
+.humane-js-animate
+.humane-jackedup.humane-jackedup-js-animate
   opacity   : 1
   transform : translateY(0)
   &:hover
     opacity : 0.7
+    filter  : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=70)")

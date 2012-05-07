@@ -2,6 +2,7 @@
 <html>
    <head>
       <title>humane.js</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge" >
       <link href='http://fonts.googleapis.com/css?family=Ubuntu&v2' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700&v2' rel='stylesheet' type='text/css'>
@@ -9,7 +10,7 @@
          body {
             font-family: Ubuntu, sans-serif;
             padding: 80px;
-            background-color: #f0f0f0;
+            background-color: #60D6A7;
          }
          h1,h3 {
             font-family: 'Cabin Sketch', serif;
@@ -37,19 +38,34 @@
          pre {
             font-family: "Ubuntu Mono";
             font-size: 0.9em;
-            background-color: #fff;
-            border: 1px solid #aaa;
+            width: 75%;
+            background-color: #007143;
             border-radius: 6px;
-            padding: 10px;
-            text-decoration: none;
+            padding: 5px 10px;
+            color: #fff;
+            cursor: pointer;
+            text-shadow: -1px 1px 1px #333;
+            box-shadow: 0px 8px 8px -8px #333;
+            -moz-transition: all 0.3s ease-out;
+            -webkit-transition: all 0.3s ease-out;
+            -ms-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+         }
+         pre:hover {
+            background-color: #00ae68;
          }
          blockquote {
             font-size: 0.8em
          }
       </style>
       <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-      <link id='theme' rel='stylesheet' href='themes/libnotify.css'/>
-      <script src='humane.js'></script>
+      <link rel='stylesheet' href='themes/bigbox.css'/>
+      <link rel='stylesheet' href='themes/boldlight.css'/>
+      <link rel='stylesheet' href='themes/jackedup.css'/>
+      <link rel='stylesheet' href='themes/libnotify.css'/>
+      <link rel='stylesheet' href='themes/original.css'/>
+      <script src='humane-new.js'></script>
    </head>
    <body>
       <a href="http://github.com/wavded/humane-js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
@@ -59,8 +75,8 @@
          <strong>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</strong>
          <br/>Utilizes CSS transitions when available, falls back to JS animation when not.  Includes mobile support.
       </p>
-      <h3>Select A Theme: 
-         <select onchange='document.getElementById("theme").href = "themes/" + this.options[this.selectedIndex].value + ".css"'>
+      <h3>Select a theme: 
+         <select onchange='humane.baseCls="humane-"+this.options[this.selectedIndex].value'>
             <option selected>libnotify</option>
             <option>bigbox</option>
             <option>boldlight</option>
@@ -70,102 +86,69 @@
       </h3>
       <p>Click a code sample below to see it in action:</p>
 
-      <a href='javascript:humane.log("Welcome Back")'>
-         <pre>humane("Welcome Back");
-humane.log("Welcome Back");</pre>
-      </a>
-      <a href='javascript:humane.info("Record <b>392</b> has been updated")'>
-         <pre>humane.info("Record &lt;b>392&lt;/b> has been updated");</pre>
-      </a>
-      <a href='javascript:humane.error("Invalid Username and/or Password")'>
-         <pre>humane.error("Invalid Username and/or Password");</pre>
-      </a>
-      <a href='javascript:humane.success(["List","of","Items"])'>
-         <pre>humane.success(["List","of","Items"]);</pre>
-      </a>
-      <a href='javascript:humane("The background color will change when finished",function(){document.body.style.backgroundColor="#6699FF"})'>
-         <pre>humane("Second parameter takes a callback that's fired when finished", function(){
-   document.body.style.backgroundColor="#6699FF";
-});</pre>
-      </a>
+      <pre>humane.log("Welcome Back")</pre>
+      <pre>humane.log("Record <b>392</b> has been updated")</pre>
+      <pre>humane.log(["List","of","Items"])</pre>
+      <pre>humane.log("Callback when finished", function(){ document.body.style.backgroundColor="#a66000" })</pre>
+      <pre>humane.log("Options can be passed", { timeout: 4000, clickToClose: true, addnCls: 'humane-error' })</pre>
+
       <h3>Options</h3>
-      <pre>humane.timeout = (number of milliseconds);</pre>
+      <p>Options can be specified in a variety of ways.  Either by the entire instance as shown below, or per notification, as shown above:</p>
+      <pre>humane.timeout = 5000 // default: 2500</pre>
       <blockquote>
-         <p>Sets the delay before a message fades out.</p>
-         <p>
-            Try It:
-            <input type='radio' name='timeout' onclick='humane.timeout = 2500' checked> 2500 <small>(2s - default)</small>
-            <input type='radio' name='timeout' onclick='humane.timeout = 5000'> 5000 <small>(5s)</small>
-            <input type='radio' name='timeout' onclick='humane.timeout = 500'> 500 <small>(0.5s)</small>
-            <input type='radio' name='timeout' onclick='humane.timeout = 0'> 0 <small>(no timeout)</small>
-         </p>
+         <p>Sets the delay before a message fades out (set to <b>0</b> for no timeout).</p>
       </blockquote>
-      <pre>humane.waitForMove = (true|false);</pre>
+      <pre>humane.waitForMove = true // default: false</pre>
       <blockquote>
          <p>Wait for mouse, keyboard, or touch action to be taken before clearing message (after timeout)</p>
-         <p>
-            Try It:
-            <input type='radio' name='waitformove' onclick='humane.waitForMove = true'> true
-            <input type='radio' name='waitformove' onclick='humane.waitForMove = false' checked> false <small>(default)</small>
-         </p>
       </blockquote>
-      <pre>humane.clickToClose = (true|false);</pre>
+      <pre>humane.clickToClose = true // default: false</pre>
       <blockquote>
          <p>Click or touch the notification to close</p>
-         <p>
-            Try It:
-            <input type='radio' name='clickToClose' onclick='humane.clickToClose = true'> true
-            <input type='radio' name='clickToClose' onclick='humane.clickToClose = false' checked> false <small>(default)</small>
-         </p>
       </blockquote>
-      <pre>humane.remove(callback);</pre>
+      <pre>humane.addnCls = 'humane-info' // default: ''</pre>
       <blockquote>
-         <p>Force remove current notification, takes an optional callback fired when finished</p>
-         <p>
-            Try It:
-            <a href='javascript:humane.remove(function(){ alert("removed") })'> humane.remove(function(){ alert('removed') }) </a>
-         </p>
+         <p>Specify an additional class to apply when notifying (nice when you only want to change just a little bit of the style)</p>
+      </blockquote>
+      <h3>Create instances with humane.create</h3>
+      <p>Create a completely new instance of humane using <b>humane.create()</b>.</p>
+      <pre>
+var notify = humane.create({ timeout: 4000, baseCls: 'humane-bigbox' })
+notify.log('Custom Notifier')</pre>
+
+      <p>There are a options that can also be applied when creating an instance:</p>
+      <pre>humane.baseCls = 'humane' // default: 'humane'</pre>
+      <blockquote>
+         <p>Specify an base class</p>
       </blockquote>
 
-      <h3>Customizing Options Per Type</h3>
-      <p>All the options are also customizable by type.  For example, say you wanted errors to always stay up until the user moved the mouse.</p>
+      <h3>Spawn notifiers with humane.spawn</h3>
+      <p>Create a custom notifier using <b>humane.spawn()</b>.</p>
       <pre>
-humane.error.waitForMove = true;
-humane.error('Stays up a until mouse move');
-humane.log('Gets removed after timeout');</pre>
-      <p>Or say you want success messages to remain up forever unless a user clicks them:</p>
+humane.info = humane.spawn({ addnCls: 'humane-libnotify-info', timeout: 1000 })
+humane.info('Info Themed Notifier')</pre>
       <pre>
-humane.success.timeout = 0;
-humane.success.clickToClose = true;
-humane.success('Will stay up forever until click or humane.remove()');
-humane.remove(function() { // removed }); // force remove</pre>
-      <p>Or you want all messages to have 3s timeout (3000) but 'info' messages to have shorter timeout of 1s (1000)</p>
-      <pre>
-humane.timeout = 3000;
-humane.info.timeout = 1000;
-humane.log('I'm up for 3 seconds');
-humane.info('I'm up for 1 second');</pre>
+humane.error = humane.spawn({ addnCls: 'humane-libnotify-error', timeout: 1000 })
+humane.error('Error Themed Notifier')</pre>
 
-      <h3>Creating a Custom Notifier</h3>
-      <p>You can create your own custom notifier that takes a type plus any of the options listed above (w/ those defaults unless overridden)</p>
-      <pre>
-var error = humane.create({ type: 'error', waitForMove: true });
-error('Yikes');</pre>
+      <h3>Force remove current notification</h3>
+      <pre>humane.remove(function(){ alert('removed') })</pre>
+      <blockquote>
+         <p>Force remove current notification, takes an optional callback fired when finished (note each instance has its own remove)</p>
+      </blockquote>
 
-      <h3>Events</h3>
-      <p>humane.js provides some events more intended for plumbing purposes, say you wanted to implement stacking or logging:</p>
-      <pre>humane.on(<b>'add'</b>, function(type, message) { ... });</pre>
-      <blockquote>
-         <p>Fires when a new message is added to the queue</p>
-      </blockquote>
-      <pre>humane.on(<b>'show'</b>, function(type, message) { ... });</pre>
-      <blockquote>
-         <p>Fires when a message is about to be shown</p>
-      </blockquote>
-      <pre>humane.on(<b>'hide'</b>, function(type, message) { ... });</pre>
-      <blockquote>
-         <p>Fires when a message is hidden and removed</p>
-      </blockquote>
+      <h3>Go crazy</h3>
+      <p>With all this power, you are bound to go CRAZY!  Click the sample below to go crazy:</p>
+      <pre>
+var bigbox = humane.create({baseCls: 'humane-bigbox', timeout: 1000})
+bigbox.error = bigbox.spawn({addnCls: 'humane-bigbox-error'})
+bigbox.log('Oh!').error('No!')
+
+var libnotify = humane.create({baseCls: 'humane-libnotify', addnCls: 'humane-libnotify-info'})
+libnotify.log('Notified')
+
+var jacked = humane.create({baseCls: 'humane-jackedup', addnCls: 'humane-jackedup-success'})
+jacked.log("What's up here!")</pre>
 
       <h3>Browser Support</h3>
       <p>Uses CSS Transitions where available otherwise falls back to JS animation, degrades gracefully.</p>
@@ -185,5 +168,15 @@ error('Yikes');</pre>
 
       <h3>Download and Usage</h3>
       <p>Visit <a href='http://github.com/wavded/humane-js'>github page</a> to download and get more details.</p>
+
+      <script>
+         humane.baseCls = 'humane-libnotify'
+         var pretags = document.getElementsByTagName('pre')
+         for (var i = 0; i < pretags.length; i++) { (function(el){
+            el.onclick = function () {
+               eval(el.innerHTML)
+            }
+         }(pretags[i])) }
+      </script>
    </body>
 </html> 

@@ -1,4 +1,17 @@
 
+3.0.0 / 2012-05-07 
+==================
+
+  * updated; documentation
+  * removed; info, success, error (use spawn instead)
+  * fixed; js error when no cb on remove
+  * fixed; flicker bug in ie9
+  * fixed; demo page not working in ie7,8
+  * added; unique instance support
+  * added; spawn support
+  * added; options per notification
+  * added; custom class support
+
 2.8.1 / 2012-04-24 
 ==================
 

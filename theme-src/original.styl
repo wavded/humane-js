@@ -1,14 +1,17 @@
 @import 'nib'
 vendor-prefixes = moz webkit ms o official
+support-for-ie = false
 
 html, body { height: 100% }
 .humane
+.humane-original
   position   : fixed
   transition : all .2s ease-out
   z-index    : 100000
-  display    : none
+  filter     : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=100)")
 
 .humane
+.humane-original
   font-family       : Ubuntu, Verdana, sans-serif
   line-height       : 40px
   font-size         : 25px
@@ -27,19 +30,22 @@ html, body { height: 100% }
     padding: 0
   ul
     list-style: none
-  &.humane-info
+  &.humane-original-info
     background-color : #030
-  &.humane-success
+  &.humane-original-success
     background-color : #030
-  &.humane-error
+  &.humane-original-error
     background-color : #300
 
 .humane.humane-animate
-  opacity: 0.8
+.humane-original.humane-original-animate
+  opacity   : 0.8
   &:hover
-    opacity: 0.6
+    opacity : 0.6
 
 .humane.humane-js-animate
-  opacity: 0.8
+.humane-original.humane-original-js-animate
+  opacity    : 0.8
   &:hover
-    opacity: 0.6
+    opacity  : 0.6
+    filter   : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=60)")
