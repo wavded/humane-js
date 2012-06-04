@@ -55,6 +55,7 @@
          this.removeEvent = ENV.bind(this.remove,this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
          ENV.domLoaded = true
+         this._run()
       },
       _afterTimeout: function () {
          if (!ENV.config(this.currentMsg.waitForMove,this.waitForMove)) this.remove()
