@@ -1,4 +1,10 @@
 
+3.0.1 / 2012-06-04 
+==================
+
+  * updated; humane location in index
+  * fixed; notification not showing up in ie8 onload GH #23
+
 3.0.0 / 2012-05-07 
 ==================
 
