@@ -181,7 +181,10 @@
          else if (cb) cb()
       },
       log: function (html, o, cb, defaults) {
-         var msg = defaults || {}
+         var msg = {}
+         if (defaults)
+           for (var opt in defaults)
+               msg[opt] = defaults[opt]
 
          if (typeof o == 'function') cb = o
          else if (o)
