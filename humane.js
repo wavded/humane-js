@@ -200,6 +200,7 @@
          var self = this
          return function (html, o, cb) {
             self.log.call(self,html,o,cb,defaults)
+            return self
          }
       },
       create: function (o) { return new Humane(o) }
