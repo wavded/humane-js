@@ -1,4 +1,10 @@
 
+3.0.3 / 2012-07-06 
+==================
+
+  * fixed; queued notification overwrites previous [JensRoland]
+  * fixed; height declaration in themes [FileTrek]
+
 3.0.1 / 2012-06-04 
 ==================
 
