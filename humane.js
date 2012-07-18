@@ -1,4 +1,13 @@
-;!function (win) {
+!function (name, context, definition) {
+   if (typeof module !== 'undefined') {
+      module.exports = definition(name, context)
+   } else if (typeof define === 'function' && typeof define.amd  === 'object') {
+      define(definition)
+   } else {
+      context[name] = definition(name, context)
+   }
+}('humane', this, function (name, context) {
+   var win = window
    var doc = document
 
    var ENV = {
@@ -205,6 +214,5 @@
       },
       create: function (o) { return new Humane(o) }
    }
-
-   win.humane = new Humane()
-}(this);
+   return new Humane()
+})
