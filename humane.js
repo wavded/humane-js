@@ -1,4 +1,4 @@
-;!function (win) {
+;!function (win, pub) {
    var doc = document
 
    var ENV = {
@@ -206,5 +206,5 @@
       create: function (o) { return new Humane(o) }
    }
 
-   win.humane = new Humane()
-}((function() {return this;})());
+   pub(win, new Humane());
+}((function(){return this;})(), function(glob, humane) { if(typeof module !== 'undefined') { module.exports = humane; } else { glob.humane = humane; } });
