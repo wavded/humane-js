@@ -207,4 +207,4 @@
    }
 
    win.humane = new Humane()
-}(this);
+}((function() {return this;})());
