@@ -207,4 +207,4 @@
    }
 
    pub(win, new Humane());
-}((function(){return this;})(), function(glob, humane) { if(typeof module !== 'undefined') { module.exports = humane; } else { glob.humane = humane; } });
+}(new Function('return window;')(), function(glob, humane) { if(typeof module !== 'undefined') { module.exports = humane; } else { glob.humane = humane; } });
