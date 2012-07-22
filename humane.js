@@ -1,4 +1,18 @@
-;!function (win) {
+/**
+ * humane.js
+ * Humanized Messages for Notifications
+ * @author Marc Harter (@wavded)
+ * @example
+ *   humane.log('hello world');
+ * See more usage examples at: http://wavded.github.com/humane-js/
+ */
+
+;!function (name, context, definition) {
+   if (typeof module !== 'undefined') module.exports = definition(name, context)
+   else if (typeof define === 'function' && typeof define.amd  === 'object') define(definition)
+   else context[name] = definition(name, context)
+}('humane', this, function (name, context) {
+   var win = window
    var doc = document
 
    var ENV = {
@@ -55,6 +69,7 @@
          this.removeEvent = ENV.bind(this.remove,this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
          ENV.domLoaded = true
+         this._run()
       },
       _afterTimeout: function () {
          if (!ENV.config(this.currentMsg.waitForMove,this.waitForMove)) this.remove()
@@ -180,7 +195,10 @@
          else if (cb) cb()
       },
       log: function (html, o, cb, defaults) {
-         var msg = defaults || {}
+         var msg = {}
+         if (defaults)
+           for (var opt in defaults)
+               msg[opt] = defaults[opt]
 
          if (typeof o == 'function') cb = o
          else if (o)
@@ -196,10 +214,10 @@
          var self = this
          return function (html, o, cb) {
             self.log.call(self,html,o,cb,defaults)
+            return self
          }
       },
       create: function (o) { return new Humane(o) }
    }
-
-   win.humane = new Humane()
-}(this);
+   return new Humane()
+})

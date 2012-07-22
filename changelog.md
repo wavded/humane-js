@@ -1,4 +1,24 @@
 
+3.0.4 / 2012-07-21 
+==================
+
+  * updated; build process
+  * updated; attribution, sample
+  * added; support Asynchronous Module Definition [tahu]
+  * added; make spawn actions chainable
+
+3.0.3 / 2012-07-06 
+==================
+
+  * fixed; queued notification overwrites previous [JensRoland]
+  * fixed; height declaration in themes [FileTrek]
+
+3.0.1 / 2012-06-04 
+==================
+
+  * updated; humane location in index
+  * fixed; notification not showing up in ie8 onload GH #23
+
 3.0.0 / 2012-05-07 
 ==================
 
