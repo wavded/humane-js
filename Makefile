@@ -8,7 +8,7 @@ watch:
 
 build:
 	@echo "Notice: UglifyJS Required: npm install -g uglify-js"
-	@uglifyjs humane.js > humane.min.js
+	@uglifyjs -v -nc humane.js > humane.min.js
 	@echo "Built uglified JS - humane.min.js"
 
 tmux_setup:
