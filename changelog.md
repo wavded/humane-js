@@ -1,4 +1,12 @@
 
+3.0.4 / 2012-07-21 
+==================
+
+  * updated; build process
+  * updated; attribution, sample
+  * added; support Asynchronous Module Definition [tahu]
+  * added; make spawn actions chainable
+
 3.0.3 / 2012-07-06 
 ==================
 
