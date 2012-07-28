@@ -91,6 +91,14 @@
       <pre>humane.log(["List","of","Items"])</pre>
       <pre>humane.log("Callback when finished", function(){ document.body.style.backgroundColor="#a66000" })</pre>
       <pre>humane.log("Options can be passed", { timeout: 4000, clickToClose: true, addnCls: 'humane-error' })</pre>
+      
+       <h3>WebKit Notifications</h3>
+       <h5>(such as OSX Notification Center) - not enabled by default</h5>
+       <p>You'll need to manage permissions for the notification center. (See <a href="http://www.html5rocks.com/en/tutorials/notifications/quick/" target="_blank">here</a> for details)</p>
+       <pre>window.webkitNotifications.requestPermission(function(){}); //click this in safari, chrome needs some massaging (see link above)</pre>
+			 <p>But humane will handle automatically using it if the browser supports it.</p>
+       <pre>humane.webkitNotifications = true //tell humane to use this feature if the browser supports it</pre>
+       <pre>humane.log("A new message", {title: "New Mail from me@me.com", onclick: function() {alert("this is the new mail")}})</pre>
 
       <h3>Options</h3>
       <p>Options can be specified in a variety of ways.  Either by the entire instance as shown below, or per notification, as shown above:</p>
@@ -171,7 +179,8 @@ jacked.log("What's up here!")</pre>
 
       <script>
          humane.baseCls = 'humane-libnotify'
-         var pretags = document.getElementsByTagName('pre')
+         humane.webkitNotifications = true
+				 var pretags = document.getElementsByTagName('pre')
          for (var i = 0; i < pretags.length; i++) { (function(el){
             el.onclick = function () {
                eval(el.innerHTML)

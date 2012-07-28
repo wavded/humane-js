@@ -54,6 +54,7 @@
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
+      this.webkitNotifications = o.webkitNotifications || false ;
 
       if (ENV.domLoaded) this._setupEl()
       else ENV.on(win,'load',ENV.bind(this._setupEl, this))
@@ -179,6 +180,13 @@
          // events['hide'](currentMessage.type, currentMessage.message,'hide');
          this._run()
       },
+      _showWebkitNotification: function(msg) {
+          //the 'null' argument for createNotification is supposed to take an image path, but this is currently unsupported in NotificationCenter
+          var notification = win.webkitNotifications.createNotification(null, msg.title || "", msg.html)
+          notification.ondisplay = msg.cb
+          notification.onclick = msg.onclick
+          notification.show()
+      }, 
       remove: function (e) {
          var cb = typeof e == 'function' ? e : null
 
@@ -206,8 +214,15 @@
 
          msg.html = html
          if (cb) msg.cb = cb
-         this.queue.push(msg)
-         this._run()
+         if (this.webkitNotifications 
+				&& ('webkitNotifications' in win)
+				&& win.webkitNotifications.checkPermission() == 0) {
+           this._showWebkitNotification(msg);           
+         }
+         else {
+            this.queue.push(msg)
+            this._run()
+         }
          return this
       },
       spawn: function (defaults) {
