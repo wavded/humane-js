@@ -207,8 +207,15 @@
 
          msg.html = html
          if (cb) msg.cb = cb
-         this.queue.push(msg)
-         this._run()
+         if (this.webkitNotifications 
+				&& ('webkitNotifications' in win)
+				&& win.webkitNotifications.checkPermission() == 0) {
+           this._showWebkitNotification(msg);           
+         }
+         else {
+            this.queue.push(msg)
+            this._run()
+         }
          return this
       },
       spawn: function (defaults) {
