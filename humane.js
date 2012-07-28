@@ -180,6 +180,13 @@
          // events['hide'](currentMessage.type, currentMessage.message,'hide');
          this._run()
       },
+      _showWebkitNotification: function(msg) {
+          //the 'null' argument for createNotification is supposed to take an image path, but this is currently unsupported in NotificationCenter
+          var notification = win.webkitNotifications.createNotification(null, msg.title || "", msg.html)
+          notification.ondisplay = msg.cb
+          notification.onclick = msg.onclick
+          notification.show()
+      }, 
       remove: function (e) {
          var cb = typeof e == 'function' ? e : null
 
