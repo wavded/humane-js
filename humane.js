@@ -54,6 +54,7 @@
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
+      this.webkitNotifications = o.webkitNotifications || false ;
 
       if (ENV.domLoaded) this._setupEl()
       else ENV.on(win,'load',ENV.bind(this._setupEl, this))
