@@ -26,7 +26,6 @@
          return function () { fn.apply(ctx,arguments) }
       },
       isArray: Array.isArray || function (obj) { return Object.prototype.toString.call(obj) === '[object Array]' },
-      domLoaded: false,
       config: function (preferred, fallback) {
          return preferred != null ? preferred : fallback
       },
@@ -55,8 +54,10 @@
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
 
-      if (ENV.domLoaded) this._setupEl()
-      else ENV.on(win,'load',ENV.bind(this._setupEl, this))
+      try { this._setupEl() } // attempt to setup elements
+      catch (e) {
+        ENV.on(win,'load',ENV.bind(this._setupEl, this)) // dom wasn't ready, wait till ready
+      }
    }
 
    Humane.prototype = {
@@ -68,7 +69,6 @@
          this.el = el
          this.removeEvent = ENV.bind(this.remove,this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
-         ENV.domLoaded = true
          this._run()
       },
       _afterTimeout: function () {
@@ -104,7 +104,6 @@
          if (timeout > 0)
             this.currentTimer = setTimeout(ENV.bind(this._afterTimeout,this), timeout)
 
-         // events['show'](type,content,'show')
          if (ENV.isArray(msg.html)) msg.html = '<ul><li>'+msg.html.join('<li>')+'</ul>'
 
          this.el.innerHTML = msg.html
@@ -176,7 +175,6 @@
          this.el.style.display = 'none'
 
          this._animating = false
-         // events['hide'](currentMessage.type, currentMessage.message,'hide');
          this._run()
       },
       remove: function (e) {
