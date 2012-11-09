@@ -53,6 +53,7 @@
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
+      this.container = o.container || doc.body
 
       try { this._setupEl() } // attempt to setup elements
       catch (e) {
@@ -65,7 +66,7 @@
       _setupEl: function () {
          var el = doc.createElement('div')
          el.style.display = 'none'
-         doc.body.appendChild(el)
+         this.container.appendChild(el)
          this.el = el
          this.removeEvent = ENV.bind(this.remove,this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
