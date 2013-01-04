@@ -49,7 +49,7 @@
       this.queue = []
       this.baseCls = o.baseCls || 'humane'
       this.addnCls = o.addnCls || ''
-      this.timeout = o.timeout || 2500
+      this.timeout = 'timeout' in o ? o.timeout : 2500
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
