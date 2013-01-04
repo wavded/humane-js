@@ -1,4 +1,13 @@
 
+3.0.6 / 2013-01-04 
+==================
+
+  * updated; modified styles for themes
+  * fixed; timeout of 0 not working GH #35
+  * fixed; font typo in jackedup.css
+  * added; note about amd and commonjs to readme
+  * added; ability to set container element when creating new humane instance
+
 3.0.5 / 2012-09-03 
 ==================
 
