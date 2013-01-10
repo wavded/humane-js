@@ -49,10 +49,11 @@
       this.queue = []
       this.baseCls = o.baseCls || 'humane'
       this.addnCls = o.addnCls || ''
-      this.timeout = o.timeout || 2500
+      this.timeout = 'timeout' in o ? o.timeout : 2500
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.forceNew = o.forceNew || false
+      this.container = o.container
 
       try { this._setupEl() } // attempt to setup elements
       catch (e) {
@@ -65,7 +66,8 @@
       _setupEl: function () {
          var el = doc.createElement('div')
          el.style.display = 'none'
-         doc.body.appendChild(el)
+         if (!this.container) this.container = doc.body
+         this.container.appendChild(el)
          this.el = el
          this.removeEvent = ENV.bind(this.remove,this)
          this.transEvent = ENV.bind(this._afterAnimation,this)

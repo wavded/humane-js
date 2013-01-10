@@ -47,6 +47,10 @@ humane.js has been tested for the following browsers.
   - iOS 4+
   - Android 2+
 
+## AMD and Node.js Support
+
+humane.js works for AMD systems like [require.js](http://requirejs.org/) and within Node.js CommonJS module system like [browserify](https://github.com/substack/node-browserify).
+
 ## Contributers
 
 Many thanks to the JS/Browser wizards that helped make this better, community rocks!

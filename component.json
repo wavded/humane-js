@@ -1,0 +1,7 @@
+{
+  "name": "humane-js",
+  "version": "3.0.6",
+  "author": "Marc Harter <@wavded> (wavded.com)",
+  "description": "A simple, modern, browser notification system",
+  "keywords": [ "notification", "alert" ]
+}
