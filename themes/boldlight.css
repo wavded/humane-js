@@ -33,11 +33,9 @@ body {
   background: -o-linear-gradient(top, rgba(255,255,255,0.8) 0%, rgba(150,150,150,0.8) 100%) no-repeat;
   background: linear-gradient(top, rgba(255,255,255,0.8) 0%, rgba(150,150,150,0.8) 100%) no-repeat;
   *background-color: #fff;
-  -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
   text-shadow: 0 -1px 1px rgba(221,221,221,0.4);
-  -moz-box-shadow: 0 4px 4px -4px #eee;
   -webkit-box-shadow: 0 4px 4px -4px #eee;
   box-shadow: 0 4px 4px -4px #eee;
   -moz-transform: scale(1.1);
