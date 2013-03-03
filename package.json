@@ -10,5 +10,11 @@
   },
   "main": "humane.js",
   "engines": {},
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "uglify-js": "2.2.5",
+    "nib": "0.9.1",
+    "stylus": "0.32.1",
+    "canvas": "1.0.1"
+  }
 }

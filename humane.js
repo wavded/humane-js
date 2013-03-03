@@ -52,7 +52,6 @@
       this.timeout = 'timeout' in o ? o.timeout : 2500
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
-      this.forceNew = o.forceNew || false
       this.container = o.container
 
       try { this._setupEl() } // attempt to setup elements

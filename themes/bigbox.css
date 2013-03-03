@@ -34,11 +34,9 @@ body {
   background: linear-gradient(top, #000 0%, rgba(0,0,0,0.9) 100%) no-repeat;
   *background-color: #000;
   color: #fff;
-  -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
   text-shadow: 0 -1px 1px #ddd;
-  -moz-box-shadow: 0 15px 15px -15px #000;
   -webkit-box-shadow: 0 15px 15px -15px #000;
   box-shadow: 0 15px 15px -15px #000;
   -moz-transform: scale(0.1);
@@ -67,7 +65,7 @@ body {
   background: -ms-linear-gradient(top, #000064 0%, rgba(0,0,100,0.9) 100%) no-repeat;
   background: -o-linear-gradient(top, #000064 0%, rgba(0,0,100,0.9) 100%) no-repeat;
   background: linear-gradient(top, #000064 0%, rgba(0,0,100,0.9) 100%) no-repeat;
-  *background-color: #003;
+  *background-color: #030;
 }
 .humane.humane-bigbox-success,
 .humane-bigbox.humane-bigbox-success {

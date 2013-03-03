@@ -32,10 +32,8 @@ body {
   background: -o-linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(50,50,50,0.9) 100%) no-repeat;
   background: linear-gradient(top, rgba(0,0,0,0.9) 0%, rgba(50,50,50,0.9) 100%) no-repeat;
   *background-color: #000;
-  -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  -moz-box-shadow: 0 4px 4px -4px #000;
   -webkit-box-shadow: 0 4px 4px -4px #000;
   box-shadow: 0 4px 4px -4px #000;
   -moz-transform: translateY(-40px);
@@ -64,7 +62,7 @@ body {
   background: -ms-linear-gradient(top, rgba(0,0,50,0.9) 0%, rgba(0,0,100,0.9) 100%) no-repeat;
   background: -o-linear-gradient(top, rgba(0,0,50,0.9) 0%, rgba(0,0,100,0.9) 100%) no-repeat;
   background: linear-gradient(top, rgba(0,0,50,0.9) 0%, rgba(0,0,100,0.9) 100%) no-repeat;
-  *background-color: #003;
+  *background-color: #030;
 }
 .humane.humane-libnotify-success,
 .humane-libnotify.humane-libnotify-success {
