@@ -119,10 +119,13 @@
 
       },
       _setOpacity: function (opacity) {
-         if (ENV.useFilter)
-            this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
-         else
+         if (ENV.useFilter){
+            try{
+               this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
+            } catch(err){}
+         } else {
             this.el.style.opacity = String(opacity)
+         }
       },
       _showMsg: function () {
          var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
