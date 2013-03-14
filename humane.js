@@ -65,7 +65,10 @@
       _setupEl: function () {
          var el = doc.createElement('div')
          el.style.display = 'none'
-         if (!this.container) this.container = doc.body
+         if (!this.container){
+           if(doc.body) this.container = doc.body;
+           else throw 'document.body is null'
+         }
          this.container.appendChild(el)
          this.el = el
          this.removeEvent = ENV.bind(this.remove,this)
@@ -192,7 +195,7 @@
          ENV.off(this.el,'touchstart',this.removeEvent)
          this.removeEventsSet = false
 
-         if (cb) this.currentMsg.cb = cb
+         if (cb && this.currentMsg) this.currentMsg.cb = cb
          if (this._animating) this._hideMsg()
          else if (cb) cb()
       },
