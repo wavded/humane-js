@@ -1,4 +1,14 @@
 
+3.1.0 / 2013-05-25 
+==================
+
+  * removed; forceNew opt, not used
+  * fixed; try catch for ie8 filter issue when gradient filter used
+  * fixed; prevent accessing property of null/undefined objects
+  * fixed; appendChild of null error GH #36
+  * added; component.json
+  * added new param: timeoutAfterMove : bool. Adds additional timeout after user action before closing
+
 3.0.6 / 2013-01-04 
 ==================
 

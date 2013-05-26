@@ -52,6 +52,7 @@
       this.timeout = 'timeout' in o ? o.timeout : 2500
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
+      this.timeoutAfterMove = o.timeoutAfterMove || false 
       this.container = o.container
 
       try { this._setupEl() } // attempt to setup elements
@@ -65,10 +66,13 @@
       _setupEl: function () {
          var el = doc.createElement('div')
          el.style.display = 'none'
-         if (!this.container) this.container = doc.body
+         if (!this.container){
+           if(doc.body) this.container = doc.body;
+           else throw 'document.body is null'
+         }
          this.container.appendChild(el)
          this.el = el
-         this.removeEvent = ENV.bind(this.remove,this)
+         this.removeEvent = ENV.bind(function(){ if (!this.timeoutAfterMove){this.remove()} else {setTimeout(ENV.bind(this.remove,this),this.timeout);}},this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
          this._run()
       },
@@ -119,10 +123,13 @@
 
       },
       _setOpacity: function (opacity) {
-         if (ENV.useFilter)
-            this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
-         else
+         if (ENV.useFilter){
+            try{
+               this.el.filters.item('DXImageTransform.Microsoft.Alpha').Opacity = opacity*100
+            } catch(err){}
+         } else {
             this.el.style.opacity = String(opacity)
+         }
       },
       _showMsg: function () {
          var addnCls = ENV.config(this.currentMsg.addnCls,this.addnCls)
@@ -189,7 +196,7 @@
          ENV.off(this.el,'touchstart',this.removeEvent)
          this.removeEventsSet = false
 
-         if (cb) this.currentMsg.cb = cb
+         if (cb && this.currentMsg) this.currentMsg.cb = cb
          if (this._animating) this._hideMsg()
          else if (cb) cb()
       },
