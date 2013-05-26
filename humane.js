@@ -53,6 +53,7 @@
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
       this.timeoutAfterMove = o.timeoutAfterMove || false 
+      this.onClick = o.onClick || null
       this.container = o.container
 
       try { this._setupEl() } // attempt to setup elements
@@ -99,9 +100,13 @@
          var msg = this.queue.shift()
          var clickToClose = ENV.config(msg.clickToClose,this.clickToClose)
 
+	 if (this.onClick !== null){
+		ENV.on(this.el,'click',ENV.bind(this.onClick,this));
+	 }
+
          if (clickToClose) {
-            ENV.on(this.el,'click',this.removeEvent)
-            ENV.on(this.el,'touchstart',this.removeEvent)
+            ENV.on(this.el,'click',ENV.bind(this.remove,this))
+            ENV.on(this.el,'touchstart',ENV.bind(this.remove,this))
          }
 
          var timeout = ENV.config(msg.timeout,this.timeout)
