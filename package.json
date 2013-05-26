@@ -2,7 +2,7 @@
   "author": "Marc Harter <@wavded> (wavded.com)",
   "name": "humane-js",
   "description": "A simple, modern, browser notification system",
-  "version": "3.0.6",
+  "version": "3.1.0",
   "homepage": "http://wavded.github.com/humane-js/",
   "repository": {
     "type": "git",
@@ -12,9 +12,9 @@
   "engines": {},
   "dependencies": {},
   "devDependencies": {
-    "uglify-js": "2.2.5",
+    "uglify-js": "2.3.6",
     "nib": "0.9.1",
     "stylus": "0.32.1",
-    "canvas": "1.0.1"
+    "canvas": "1.0.2"
   }
 }
