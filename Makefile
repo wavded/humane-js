@@ -5,3 +5,6 @@ watch:
 
 build:
 	@node_modules/.bin/uglifyjs humane.js -m -c -v > humane.min.js
+
+server:
+	@python -m SimpleHTTPServer

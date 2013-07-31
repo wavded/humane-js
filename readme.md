@@ -11,7 +11,7 @@ clear and grabs the users attention.  It is framework independent.  Customizable
 Setup is simple:
 
   - Download tar/zip
-  - Select a [theme](humane-js/wiki/Themes) from `themes` dir.
+  - Select a [theme](https://github.com/wavded/humane-js/wiki/Themes) from `themes` dir.
   - Include the theme CSS in your page
   - Include `humane.min.js` in your page
 
