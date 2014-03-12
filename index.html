@@ -66,6 +66,8 @@
       <link rel='stylesheet' href='themes/jackedup.css'/>
       <link rel='stylesheet' href='themes/libnotify.css'/>
       <link rel='stylesheet' href='themes/original.css'/>
+      <link rel='stylesheet' href='themes/flatty.css'/>
+
       <script src='humane.js'></script>
    </head>
    <body>
@@ -76,13 +78,14 @@
          <strong>A simple, modern, framework-independent, well-tested, unobtrusive, notification system.</strong>
          <br/>Utilizes CSS transitions when available, falls back to JS animation when not.  Includes mobile support.
       </p>
-      <h3>Select a theme: 
+      <h3>Select a theme:
          <select onchange='humane.baseCls="humane-"+this.options[this.selectedIndex].value'>
             <option selected>libnotify</option>
             <option>bigbox</option>
             <option>boldlight</option>
             <option>jackedup</option>
             <option>original</option>
+            <option>flatty</option>
          </select>
       </h3>
       <p>Click a code sample below to see it in action:</p>
@@ -184,4 +187,4 @@ jacked.log("What's up here!")</pre>
          }(pretags[i])) }
       </script>
    </body>
-</html> 
+</html>
