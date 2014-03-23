@@ -1,4 +1,12 @@
 
+3.2.0 / 2014-03-22
+==================
+
+ * add; new theme called Flatty [msurguy]
+ * add; requirejs test
+ * fix; broken theme link
+ * fix; version tag in bower configuration
+
 3.1.0 / 2013-05-25 
 ==================
 
