@@ -26,13 +26,13 @@ Got a neat theme/animation, love to see it.  View `theme-src/bigbox.styl` for an
 To get setup with Stylus use [npm](http://npmjs.org):
 
 ```sh
-(sudo) npm install -g stylus nib canvas
+npm install --development
 ```
 
 With Stylus installed you can watch for changes and compile into CSS by running:
 
 ```sh
-make watch
+npm run watch
 ```
 
 ## Desktop and Mobile Browser Support
@@ -64,7 +64,7 @@ Many thanks to the JS/Browser wizards that helped make this better, community ro
 
 (The MIT License)
 
-Copyright (c) 2011 Marc Harter &lt;wavded@gmail.com&gt;
+Copyright (c) 2014 Marc Harter &lt;wavded@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
