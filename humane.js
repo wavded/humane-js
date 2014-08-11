@@ -226,4 +226,4 @@
       create: function (o) { return new Humane(o) }
    }
    return new Humane()
-})
+});
