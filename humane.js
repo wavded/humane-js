@@ -4,6 +4,7 @@
  * @author Marc Harter (@wavded)
  * @example
  *   humane.log('hello world');
+ * @license MIT
  * See more usage examples at: http://wavded.github.com/humane-js/
  */
 
