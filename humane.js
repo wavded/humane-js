@@ -53,7 +53,7 @@
       this.timeout = 'timeout' in o ? o.timeout : 2500
       this.waitForMove = o.waitForMove || false
       this.clickToClose = o.clickToClose || false
-      this.timeoutAfterMove = o.timeoutAfterMove || false 
+      this.timeoutAfterMove = o.timeoutAfterMove || false
       this.container = o.container
 
       try { this._setupEl() } // attempt to setup elements
@@ -73,7 +73,7 @@
          }
          this.container.appendChild(el)
          this.el = el
-         this.removeEvent = ENV.bind(function(){ if (!this.timeoutAfterMove){this.remove()} else {setTimeout(ENV.bind(this.remove,this),this.timeout);}},this)
+         this.removeEvent = ENV.bind(function(){ if (!this.currentMsg.timeoutAfterMove){this.remove()} else {setTimeout(ENV.bind(this.remove,this),this.currentMsg.timeoutAfterMove);}},this)
          this.transEvent = ENV.bind(this._afterAnimation,this)
          this._run()
       },
