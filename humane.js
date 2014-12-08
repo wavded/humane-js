@@ -73,7 +73,15 @@
          }
          this.container.appendChild(el)
          this.el = el
-         this.removeEvent = ENV.bind(function(){ if (!this.currentMsg.timeoutAfterMove){this.remove()} else {setTimeout(ENV.bind(this.remove,this),this.currentMsg.timeoutAfterMove);}},this)
+         this.removeEvent = ENV.bind(function(){
+            var timeoutAfterMove = ENV.config(this.currentMsg.timeoutAfterMove,this.timeoutAfterMove)
+            if (!timeoutAfterMove){
+               this.remove()
+            } else {
+               setTimeout(ENV.bind(this.remove,this),timeoutAfterMove)
+            }
+         },this)
+
          this.transEvent = ENV.bind(this._afterAnimation,this)
          this._run()
       },
