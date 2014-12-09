@@ -1,4 +1,9 @@
 
+3.2.2 / 2014-12-09
+==================
+
+  * mod; User timeoutAfterMove of currentMsg [EloHg]
+
 3.2.1 / 2014-11-02
 ==================
 
