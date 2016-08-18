@@ -1,7 +1,7 @@
 # humane.js
 This project was heavily inspired by [humanmsg](http://code.google.com/p/humanmsg/) project for jQuery.  I really
 liked the project but I wanted to remove the jQuery dependency, add support for CSS transitions, and have more 
-control over the timing.
+control over the timing.  I consider the project complete and don't plan on adding any new features except for any bug fixes.
 
 ## About
 humane.js tries to be as unobtrusive as possible to the user experience while providing helpful information that is
@@ -64,7 +64,7 @@ Many thanks to the JS/Browser wizards that helped make this better, community ro
 
 (The MIT License)
 
-Copyright (c) 2014 Marc Harter &lt;wavded@gmail.com&gt;
+Copyright (c) 2016 Marc Harter &lt;wavded@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
