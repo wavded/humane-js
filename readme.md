@@ -64,7 +64,7 @@ Many thanks to the JS/Browser wizards that helped make this better, community ro
 
 (The MIT License)
 
-Copyright (c) 2016 Marc Harter &lt;wavded@gmail.com&gt;
+Copyright (c) 2018 Marc Harter &lt;wavded@gmail.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
