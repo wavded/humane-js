@@ -17,7 +17,7 @@
   "engines": {},
   "dependencies": {},
   "devDependencies": {
-    "canvas": "1.0.2",
+    "canvas": "2.6.0",
     "nib": "^1.0.3",
     "stylus": "^0.47.3",
     "uglify-js": "^2.4.15"
