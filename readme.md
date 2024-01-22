@@ -17,7 +17,7 @@ Setup is simple:
 
 ## Demo/Usage
 
-You can see a [demo and usage here](http://wavded.github.com/humane-js/)
+You can see a [demo and usage here](http://wavded.github.io/humane-js/)
 
 ## Custom Themes
 
