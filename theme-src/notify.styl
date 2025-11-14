@@ -1,0 +1,60 @@
+@import 'nib'
+vendor-prefixes = moz webkit ms o official
+support-for-ie = false
+
+html, body { min-height: 100% }
+.humane
+.humane-notify
+  position   : fixed
+  transition : all 0.35s cubic-bezier(0.175, 0.885, 0.320, 1.275)
+  z-index    : 100000
+  filter     : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=100)")
+
+.humane
+.humane-notify
+  font-family       : Ubuntu, Arial, sans-serif
+  text-align        : center
+  font-size         : 15px
+  bottom            : 10px
+  right             : 10px
+  opacity           : 0
+  width             : 150px
+  color             : #fff
+  padding           : 5px 10px
+  background-image  : linear-gradient-image(80px, rgba(72, 72, 72, 1), rgba(122, 122, 122, 1))
+  background        : linear-gradient(top,rgba(72, 72, 72, 1), rgba(122, 122, 122, 1)) no-repeat
+  *background-color : #484848
+  box-shadow        : 0 4px 4px -4px #000
+  transform         : translateX(100%)
+  p, ul
+    margin: 0
+    padding: 0
+  ul
+    list-style: none
+  &.humane-notify-info
+    background-image  : linear-gradient-image(80px, rgba(72, 72, 72, 1), rgba(122, 122, 122, 1))
+    background        : linear-gradient(top, rgba(72, 72, 72, 1), rgba(122, 122, 122, 1)) no-repeat
+    *background-color : #484848
+  &.humane-notify-success
+    background-image  : linear-gradient-image(80px, rgba(24, 188, 156, 1), rgba(18, 140, 116, 1))
+    background        : linear-gradient(top, rgba(24, 188, 156, 1), rgba(18, 140, 116, 1)) no-repeat
+    *background-color  : #188c9c
+  &.humane-notify-error
+    background-image  : linear-gradient-image(200px, rgba(231, 76, 60, 1), rgba(171, 59, 46, 1))
+    background        : linear-gradient(top, rgba(231, 76, 60, 1), rgba(171, 59, 46, 1)) no-repeat
+    *background-color  : #874c3c
+
+.humane.humane-animate
+.humane-notify.humane-notify-animate
+  opacity           : 1
+  transform         : translateX(0)
+  &:hover
+    opacity         : 0.3
+
+.humane.humane-animate
+.humane-notify.humane-notify-js-animate
+  opacity           : 1
+  transform         : translateX(0)
+  &:hover
+    opacity         : 0.3
+    filter          : unquote("progid:DXImageTransform.Microsoft.Alpha(Opacity=30)")
