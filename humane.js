@@ -55,6 +55,7 @@
       this.clickToClose = o.clickToClose || false
       this.timeoutAfterMove = o.timeoutAfterMove || false
       this.container = o.container
+      this.showAdditional = o.showAdditional || false
 
       try { this._setupEl() } // attempt to setup elements
       catch (e) {
@@ -120,7 +121,9 @@
 
          if (ENV.isArray(msg.html)) msg.html = '<ul><li>'+msg.html.join('<li>')+'</ul>'
 
+         msg.html += "<div id='humane-additional-msgs' style='font-size:75%;opacity:0.75;'/>"
          this.el.innerHTML = msg.html
+         this._computeAdditionalMsgs()
          this.currentMsg = msg
          this.el.className = this.baseCls
          if (ENV.transSupport) {
@@ -130,6 +133,15 @@
             this._showMsg()
          }
 
+      },
+      _computeAdditionalMsgs: function() {
+         if (!this.showAdditional) return
+         var l = this.queue.length
+         if (l > 0) {
+            var elt = doc.getElementById("humane-additional-msgs")
+            if (!elt) return
+            elt.innerHTML = "<hr>"+l+" message"+(l>1?"s":"")+" after this one." // TODO: Localize this string computation
+         } 
       },
       _setOpacity: function (opacity) {
          if (ENV.useFilter){
@@ -222,6 +234,7 @@
          msg.html = html
          if (cb) msg.cb = cb
          this.queue.push(msg)
+         this._computeAdditionalMsgs()
          this._run()
          return this
       },
